@@ -8,8 +8,9 @@ export const Dish = ({ dish }) => {
   const { name, price } = dish;
   return (
     <div>
-      <p>{name}</p>
-      <p>{price}</p>
+      <p>
+        {name}, {price}
+      </p>
     </div>
   );
 };

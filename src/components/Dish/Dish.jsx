@@ -1,15 +1,14 @@
-import React from "react";
-
 export const Dish = ({ dish }) => {
   if (!dish) {
-    return null;
+    return null
   }
 
-  const { name, price } = dish;
+  const { name, price, ingredients } = dish
   return (
     <div>
-      <p>{name}</p>
-      <p>{price}</p>
+      <p><b>Name: </b>{ name }</p>
+      <p><b>Price: </b>{ price }</p>
+      <p><b>Ingredients: </b>{ ingredients.join(', ') }</p>
     </div>
-  );
-};
+  )
+}

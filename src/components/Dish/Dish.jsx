@@ -5,11 +5,21 @@ export const Dish = ({ dish }) => {
     return null;
   }
 
-  const { name, price } = dish;
+  const { name, price, ingredients } = dish;
+  const listIngredients = ingredients.map((ing) => { // ?
+    return(
+      <li>{ing}</li>
+    )
+  })
   return (
-    <div>
-      <p>{name}</p>
-      <p>{price}</p>
-    </div>
+    <li>
+      <p>FoodName: {name}</p>
+      <p>Price: {price}</p>
+      <p>Ingredients:</p>
+      <ul>
+        {listIngredients}
+      </ul>
+      <hr/>
+    </li>
   );
 };

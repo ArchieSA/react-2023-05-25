@@ -3,22 +3,23 @@
 import React from "react";
 import { restaurants } from "@/mocks";
 import { Menu } from "@/components/Menu/Menu";
+import { Reviews } from "@/components/Reviews";
 
 export default function Home() {
-  const { name, menu, reviews } = restaurants[0];
-
+  if(!restaurants?.length) {
+    return <div>This page is empty, try again later</div>
+  }
   return (
-    <div>
-      {/* Отрисовываем рестораны здесь */}
-      <h2>{name}</h2>
-      <Menu menu={menu} />
-      {/* Reviews */}
-      <h3>Reviews</h3>
-      <ul>
-        {reviews.map(({ text }) => (
-          <li>{text}</li>
-        ))}
-      </ul>
+    <div style={{display: 'flex'}}>
+      {restaurants.map(({id, name, menu, reviews}) => {
+        return (
+          <div style={{margin: '0px auto', padding: '0px 30px'}} key={id}>
+            <h2>Restaurant - {name}</h2>
+            <Menu menu={menu} />
+            <Reviews reviews={reviews} />  
+          </div>
+        )
+      })}
     </div>
   );
 }

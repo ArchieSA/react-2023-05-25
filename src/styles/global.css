@@ -1,0 +1,11 @@
+h1, h2 { 
+  color: rgb(0, 0, 0, 0.7); 
+}
+
+h1 {
+  font-size: 1.8em;
+}
+
+h2 {
+  font-size: 1.5em;
+}

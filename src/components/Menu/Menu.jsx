@@ -1,7 +1,7 @@
 import { Dish } from "@/components/Dish/Dish";
 import React from "react";
 
-/* eslint-disable react/jsx-key */
+
 export const Menu = ({ menu }) => {
   if (!menu?.length) {
     return <span>Empty Menu</span>;
@@ -12,7 +12,7 @@ export const Menu = ({ menu }) => {
       <h3>Menu</h3>
       <ul>
         {menu.map((dish) => (
-          <li>
+          <li key={dish.id}>
             <Dish dish={dish} />
           </li>
         ))}

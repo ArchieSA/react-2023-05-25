@@ -9,9 +9,9 @@ export default function Home() {
 
 	return (
 		<div>
-			{restaurants.map((_el, i) => {
+			{restaurants.map((restauran) => {
 				return (
-					<Restaurants prop={restaurants[i]} />
+					<Restaurants prop={restauran} />
 				)
 			})}
 		</div>

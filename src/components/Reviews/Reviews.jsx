@@ -10,7 +10,9 @@ export const Reviews = ({ reviews }) => {
             <h3>Reviews</h3>
             <ul>
                 {reviews.map((comments) => (
-                    <Comments comments={comments}/>
+                    <li>
+                        <Comments comments={comments} />
+                    </li>
                 ))}
             </ul>
         </>

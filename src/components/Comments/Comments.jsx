@@ -5,12 +5,10 @@ export const Comments = ({ comments }) => {
 
     const { user, text, rating } = comments;
     return (
-        <li>
             <div>
                 <p>User: {user}</p>
                 <p>Comments: {text}</p>
                 <p>Rating: {rating}</p>
             </div>
-        </li>
     );
 };

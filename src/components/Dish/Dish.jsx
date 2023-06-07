@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export const Dish = ({ dish }) => {
   if (!dish) {
@@ -9,7 +9,7 @@ export const Dish = ({ dish }) => {
   return (
     <div>
       <p>{name}</p>
-      <p>{price}</p>
+      <p>{price} $</p>
     </div>
   );
 };

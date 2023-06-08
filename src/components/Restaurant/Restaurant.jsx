@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu } from '@/components/Menu/Menu';
+import { Reviews } from '../Reviews/Reviews';
 
 /* eslint-disable react/jsx-key */
 export const Restaurant = ({ restaurant }) => {
@@ -14,13 +15,7 @@ export const Restaurant = ({ restaurant }) => {
         <div>
             <h2>{name}</h2>
             <Menu menu={menu} />
-            {/* Reviews */}
-            <h3>Reviews</h3>
-            <ul>
-                {reviews.map(({ text }) => (
-                    <li>{text}</li>
-                ))}
-            </ul>
+            <Reviews reviews={reviews} />
         </div>
     );
 };

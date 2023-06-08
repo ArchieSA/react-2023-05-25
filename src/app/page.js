@@ -2,12 +2,12 @@
 /* eslint-disable react/no-children-prop */
 import React from "react";
 import { restaurants } from "@/mocks";
-import { RestaurantList } from "@/components/RestaurantList/RestaurantList";
+import { Restaurants } from "@/components/Restaurants/Restaurants";
 
 export default function Home() {
   //const { name, menu, reviews } = restaurants[0];
 
   return (
-      <RestaurantList restaurants={restaurants} />
+    <Restaurants restaurants={restaurants} />
   );
 }

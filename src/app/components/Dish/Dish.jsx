@@ -1,22 +1,16 @@
-import React, { memo, useMemo } from "react"
-import s from './styles.module.css'
+import React, { memo } from "react"
+import { Ingradients } from './components/Ingradients'
 
-const renderParts = (parts) => <span className={s.ingradients}><br/>&nbsp;&nbsp;{parts}</span>
-
-export const Dish = memo(({name, price, ingredients}) => {
-  const parts = useMemo(() => ingredients?.length ? ingredients.join(', ') : undefined, [ingredients])
-
-  return (
+export const Dish = memo(({name, price, ingredients}) => 
     <div>
       <p>
         {name}
-        {parts && renderParts(parts)}
+        {<Ingradients ingredients = {ingredients} />}
         <br/><br/>&nbsp;&nbsp;
         {price ?? '?'}
         {price && ' Usd'}
       </p>
     </div>
   )
-})
 
 Dish.displayName = 'Dish'

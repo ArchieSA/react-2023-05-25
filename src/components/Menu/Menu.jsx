@@ -1,5 +1,5 @@
-import { Dish } from "@/components/Dish/Dish";
-import React from "react";
+import { Dish } from '@/components/Dish/Dish';
+import React from 'react';
 
 /* eslint-disable react/jsx-key */
 export const Menu = ({ menu }) => {
@@ -13,7 +13,7 @@ export const Menu = ({ menu }) => {
       <ul>
         {menu.map((dish) => (
           <li>
-            <Dish dish={dish} />
+            <Dish dish={dish}  />
           </li>
         ))}
       </ul>

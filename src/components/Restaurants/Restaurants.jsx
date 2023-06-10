@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
 /* eslint-disable react/jsx-key */
-import { Restaurant } from "@/components/Restaurant/Restaurant";
-import React, { useEffect, useState } from "react";
+import { Restaurant } from '@/components/Restaurant/Restaurant';
+import React, { useEffect, useState } from 'react';
 
 export const Restaurants = ({ restaurants }) => {
   let [activeRestaurantIndex, setActiveRestaurantIndex] = useState(0);
 
   useEffect(() => {
-    console.log("reset");
+    console.log('reset');
   }, [activeRestaurantIndex]);
 
   return (

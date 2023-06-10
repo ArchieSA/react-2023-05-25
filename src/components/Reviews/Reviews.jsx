@@ -1,4 +1,5 @@
 import React from "react";
+import {Review} from '@/components/Review/Review'
 
 export const Reviews = ({ reviews }) => {
   if (!reviews?.length) {
@@ -11,8 +12,10 @@ export const Reviews = ({ reviews }) => {
     <div>
       <h2>Reviews</h2>
       <ul>
-        {reviews.map((r) => (
-          <li key={r.id}>{r.text}</li>
+        {reviews.map((review) => (
+          <li key={review.id}>
+            <Review review={review}/>
+          </li>
         ))}
       </ul>
     </div>

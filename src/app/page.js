@@ -11,8 +11,8 @@ export default function Home() {
 
   return (
     <div>
-      {restaurants.map((r) => (
-        <Restaurant restaurant={r} />
+      {restaurants.map((restaurant) => (
+        <Restaurant restaurant={restaurant} />
       ))}
     </div>
   );

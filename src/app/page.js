@@ -5,13 +5,12 @@ import { restaurants } from "@/mocks";
 import { Restaurants } from "@/components/Restaurants/Restaurants";
 
 export default function Home() {
-	const { name, menu, reviews } = restaurants[0];
 
 	return (
 		<div>
-			{restaurants.map((restauran) => {
+			{restaurants.map((restaurant) => {
 				return (
-					<Restaurants prop={restauran} />
+					<Restaurants restaurant={restaurant} />
 				)
 			})}
 		</div>

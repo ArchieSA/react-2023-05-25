@@ -1,4 +1,4 @@
-import { Comments } from "@/components/Comments/Comments"
+import { Comment } from "@/components/Comment/Comment"
 
 export const Reviews = ({ reviews }) => {
     if (!reviews) {
@@ -9,9 +9,9 @@ export const Reviews = ({ reviews }) => {
         <>
             <h3>Reviews</h3>
             <ul>
-                {reviews.map((comments) => (
+                {reviews.map((comment) => (
                     <li>
-                        <Comments comments={comments} />
+                        <Comment comment={comment} />
                     </li>
                 ))}
             </ul>

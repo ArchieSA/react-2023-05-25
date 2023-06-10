@@ -1,9 +1,10 @@
-export const Comments = ({ comments }) => {
-    if (!comments) {
+export const Comment = ({ comment }) => {
+    if (!comment) {
         return null
     }
 
-    const { user, text, rating } = comments;
+    const { user, text, rating } = comment;
+    
     return (
             <div>
                 <p>User: {user}</p>

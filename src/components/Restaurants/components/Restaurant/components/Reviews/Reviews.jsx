@@ -1,7 +1,6 @@
-import { Review } from "@/components/Review/Review";
 import React from "react";
+import { Review } from "./components/Review/Review";
 
-/* eslint-disable react/jsx-key */
 export const Reviews = ({ reviews }) => {
   if (!reviews?.length) {
     return <span>Empty reviews</span>;
@@ -12,7 +11,7 @@ export const Reviews = ({ reviews }) => {
       <h3>Reviews</h3>
       <ul>
         {reviews.map((review) => (
-          <li>
+          <li key={review.id}>
             <Review review={review} />
           </li>
         ))}

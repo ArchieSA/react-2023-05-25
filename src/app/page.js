@@ -2,8 +2,8 @@
 /* eslint-disable react/no-children-prop */
 import React from "react";
 import { restaurants } from "@/mocks";
-import { Restaurants } from "@/components/Restaurants/Restaurants";
+import { RestaurantsView } from "@/components/Restaurants/RestaurantsView";
 
 export default function Home() {
-  return <Restaurants restaurants={restaurants} />;
+  return <RestaurantsView restaurants={restaurants} />;
 }

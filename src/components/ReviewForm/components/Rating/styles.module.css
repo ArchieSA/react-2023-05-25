@@ -1,0 +1,6 @@
+.container {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}

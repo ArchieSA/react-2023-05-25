@@ -1,5 +1,5 @@
-import React from "react";
+import React from 'react';
 
-export const Rating = ({ value, onChange }) => {
-  return <div>Rating</div>;
+export const Rating = ({ value }) => {
+  return <div>{value}</div>;
 };

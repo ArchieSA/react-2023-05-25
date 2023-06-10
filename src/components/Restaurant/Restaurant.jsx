@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-key */
-import { Menu } from "@/components/Menu/Menu";
-import { NewReviewForm } from "@/components/NewReviewForm/NewReviewForm";
-import { Reviews } from "@/components/Reviews/Reviews";
-import React from "react";
+import { Menu } from '@/components/Menu/Menu';
+import { NewReviewForm } from '@/components/NewReviewForm/NewReviewForm';
+import { Reviews } from '@/components/Reviews/Reviews';
+import React from 'react';
 
 export const Restaurant = ({ restaurant }) => {
   if (!restaurant) {

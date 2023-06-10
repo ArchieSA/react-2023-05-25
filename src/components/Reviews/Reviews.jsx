@@ -6,8 +6,6 @@ export const Reviews = ({ reviews }) => {
     return <span>No reviews</span>;
   }
 
-  console.log(reviews);
-
   return (
     <div>
       <h2>Reviews</h2>

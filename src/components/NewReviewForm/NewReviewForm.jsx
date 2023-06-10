@@ -50,7 +50,7 @@ export const NewReviewForm = () => {
         />
       </div>
       <div>
-        <label>Rating</label>
+        <label>Rating {form.rating}</label>
         <Rating
           value={form.rating}
           onChange={(value) =>

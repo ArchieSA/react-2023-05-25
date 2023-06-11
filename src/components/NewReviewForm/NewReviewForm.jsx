@@ -1,5 +1,5 @@
 import { Rating } from "@/components/Rating/Rating";
-import React, { useReducer, useState } from "react";
+import React, { useReducer } from "react";
 
 const initialState = {
   name: "",
@@ -28,36 +28,12 @@ const reducer = (state, { type, payload } = {}) => {
 
 export const NewReviewForm = () => {
   const [form, dispatch] = useReducer(reducer, initialState);
-
   return (
     <div>
-      <div>
-        <label>Name</label>
-        <input
-          value={form.name}
-          onChange={(event) =>
-            dispatch({ type: "changeName", payload: event.target.value })
-          }
-        />
-      </div>
-      <div>
-        <label>Text</label>
-        <input
-          value={form.text}
-          onChange={(event) =>
-            dispatch({ type: "changeText", payload: event.target.value })
-          }
-        />
-      </div>
-      <div>
-        <label>Rating</label>
-        <Rating
-          value={form.rating}
-          onChange={(value) =>
-            dispatch({ type: "changeRating", payload: value })
-          }
-        />
-      </div>
+      <Rating
+        value={form}
+        onChange={(type, value) => dispatch({ type: type, payload: value })}
+      />
     </div>
   );
 };

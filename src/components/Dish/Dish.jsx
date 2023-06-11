@@ -17,7 +17,6 @@ export const Dish = ({ dish }) => {
 
   const { name, price, ingredients } = dish;
 
-  console.log("Dish Ingredients: ", ingredients);
   return (
     <>
     <div>

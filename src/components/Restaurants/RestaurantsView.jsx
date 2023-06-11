@@ -20,8 +20,8 @@ export const RestaurantsView = ({ restaurants }) => {
   );
 
   const setActiveIndex = useCallback(
-    (index) => setState({ filter, activeRestaurantIndex: index }),
-    [filter]
+    (index) => setState(({ filter }) => ({ filter, activeRestaurantIndex: index })),
+    []
   );
 
   const debouncedFiltering = useMemo(

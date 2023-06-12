@@ -12,6 +12,6 @@ export const useRestaurantController = () => {
       {}
     )    
 
-    return { ...actions }
+    return actions
   }, [dispatch])
 }

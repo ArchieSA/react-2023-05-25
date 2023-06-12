@@ -1,7 +1,13 @@
-import React, { useCallback } from "react";
+import React from "react";
 
-export const ScoreItem = ({ disabled, score, onclick }) => {
-  const onClick = useCallback((ev) => onclick(Number(ev.target.value)), [onclick])
-
-  return <button name={`s${score}`} value={score} title={`Оценка ${score}`} {...(disabled && {disabled})} onClick={onClick} >{score}</button>
-}
+export const ScoreItem = ({ disabled, score, onclick }) => (
+  <button
+    name={`s${score}`}
+    value={score}
+    title={`Оценка ${score}`}
+    {...(disabled && { disabled })}
+    onClick={(ev) => onclick(Number(ev.target.value))}
+  >
+    {score}
+  </button>
+);

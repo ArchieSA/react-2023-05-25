@@ -1,30 +1,48 @@
 "use client";
-
-/* eslint-disable react/jsx-key */
-import { Restaurant } from "@/components/Restaurant/Restaurant";
 import React, { useEffect, useState } from "react";
+import { Restaurant } from "@/components/Restaurant/Restaurant";
+import { SearchInput } from "@/components/InputText/InputText";
 
 export const Restaurants = ({ restaurants }) => {
-  let [activeRestaurantIndex, setActiveRestaurantIndex] = useState(0);
+  const [searchValue, setSearchValue] = useState(''); 
+  const [activeRestaurantIndex, setActiveRestaurantIndex] = useState(0);
+  const [filteredRestaurants, setRestaurants] = useState(() => restaurants);
 
   useEffect(() => {
-    console.log("reset");
-  }, [activeRestaurantIndex]);
+    setRestaurants(
+      restaurants.filter(
+        ({ name }) => name.toLowerCase().startsWith(searchValue.toLowerCase())
+      )
+    )
+  }, [restaurants, searchValue])
 
   return (
     <div>
+      <SearchInput 
+        initialValue={searchValue} 
+        onChange={setSearchValue} 
+      />
+    
       <div>
-        {restaurants.map(({ name }, index) => (
-          <button
-            onClick={() => {
-              setActiveRestaurantIndex(index);
-            }}
-          >
-            {name}
-          </button>
-        ))}
+        {!filteredRestaurants?.length && <span>Empty List</span>}
+        
+        {
+          filteredRestaurants.map(({ name, id }, index) => (
+            <button
+              key={id}
+              onClick={() => {
+                setActiveRestaurantIndex(index);
+              }}
+            >
+              {name}
+            </button>
+          ))
+        }
       </div>
-      <Restaurant restaurant={restaurants[activeRestaurantIndex]} />
+      {
+        filteredRestaurants[activeRestaurantIndex] 
+        && <Restaurant restaurant={filteredRestaurants[activeRestaurantIndex]} />
+      }
     </div>
   );
 };

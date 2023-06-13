@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React from "react";
 
 const ratingArray = [1, 2, 3, 4, 5];
@@ -5,12 +6,12 @@ const ratingArray = [1, 2, 3, 4, 5];
 export const Rating = ({ value, onChange }) => {
   return (
     <div>
-      {ratingArray.map((ratingValue) => (
+      {new Array(5).fill(null).map((_, index) => (
         <button
-          disabled={ratingValue === value}
-          onClick={() => onChange(ratingValue)}
+          onClick={() => onChange(index + 1)}
+          disabled={value === index + 1}
         >
-          {ratingValue}
+          {index + 1}
         </button>
       ))}
     </div>

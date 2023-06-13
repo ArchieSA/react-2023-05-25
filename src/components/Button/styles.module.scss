@@ -1,0 +1,18 @@
+.root {
+  border: none;
+  padding: 12px;
+}
+
+.disabled {
+  opacity: 0.3;
+}
+
+.primary {
+  background-color: rgb(236, 91, 1);
+}
+
+.secondary {
+  background-color: rgba(142, 110, 91, 0.925);
+  border: 1px solid grey;
+  border-radius: 8px;
+}

@@ -3,6 +3,8 @@
 import { Button } from "@/components/Button/Button";
 /* eslint-disable react/jsx-key */
 import { Restaurant } from "@/components/Restaurant/Restaurant";
+import { Tabs } from '@/components/Tabs/Tabs'
+
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -43,17 +45,13 @@ export const Restaurants = ({ restaurants }) => {
   return (
     <div>
       <input onChange={(event) => onChangeSearchValue(event.target.value)} />
-      <div>
-        {filteredRestaurants.map(({ name }, index) => (
-          <Button
-            onClick={() => {
-              setActiveRestaurantIndex(index);
-            }}
-          >
-            {name}
-          </Button>
-        ))}
-      </div>
+      <Tabs 
+        tabs={filteredRestaurants} 
+        reduce={tab => tab.name}
+        onSwitchTab={(index) => setActiveRestaurantIndex(index)}
+        active={activeRestaurantIndex}
+      />
+        
       {filteredRestaurants[activeRestaurantIndex] ? (
         <Restaurant restaurant={filteredRestaurants[activeRestaurantIndex]} />
       ) : (

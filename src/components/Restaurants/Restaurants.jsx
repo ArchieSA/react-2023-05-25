@@ -1,10 +1,10 @@
 "use client";
 
-import { Button } from "@/components/Button/Button";
-/* eslint-disable react/jsx-key */
-import { Restaurant } from "@/components/Restaurant/Restaurant";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { Restaurant } from "@/components/Restaurant/Restaurant";
+import styles from "./styles.module.scss";
+import classNames from "classnames";
 
 export const Restaurants = ({ restaurants }) => {
   let [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
@@ -42,22 +42,32 @@ export const Restaurants = ({ restaurants }) => {
 
   return (
     <div>
-      <input onChange={(event) => onChangeSearchValue(event.target.value)} />
+      <input
+        className={styles.restaurants__search}
+        placeholder="Введите название ресторана"
+        onChange={(event) => onChangeSearchValue(event.target.value)}
+      />
+
       <div>
-        {filteredRestaurants.map(({ name }, index) => (
-          <Button
-            onClick={() => {
-              setActiveRestaurantIndex(index);
-            }}
+        {filteredRestaurants.map(({ name, id }, index) => (
+          <button
+            key={id}
+            className={classNames(
+              styles.restaurants__tab,
+              {
+                [styles.restaurants__selected]: activeRestaurantIndex === index,
+              },
+            )}
+            onClick={() => setActiveRestaurantIndex(index)}
           >
             {name}
-          </Button>
+          </button>
         ))}
       </div>
       {filteredRestaurants[activeRestaurantIndex] ? (
         <Restaurant restaurant={filteredRestaurants[activeRestaurantIndex]} />
       ) : (
-        <span>Нету</span>
+        <span>Не найден запрашиваемый ресторан</span>
       )}
     </div>
   );

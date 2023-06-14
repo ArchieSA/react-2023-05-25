@@ -1,0 +1,13 @@
+.root {
+  border-bottom: 1px solid var(--border-color);
+
+  &-name {
+    margin: 10px 0 20px;
+    text-align: center;
+  }
+
+  &-list {
+    padding-left: 0;
+    list-style-type: none;
+  }
+}

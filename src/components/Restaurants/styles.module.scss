@@ -1,0 +1,42 @@
+.restaurants {
+  &__search {
+    width: 300px;
+    font-size: var(--font-12);
+    padding: var(--half-size) var(--base-size);
+    margin-bottom: 10px;
+
+    &::placeholder {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--secondary-text-color);
+    }
+  }
+
+  &__tab {
+    position: relative;
+    font-size: var(--font-14);
+    font-weight: 400;
+    background-color: #fff;
+    padding: var(--half-size) var(--base-size);
+    border-radius: var(--half-size) var(--half-size) 0 0;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__selected {
+    border-top: 1px solid var(--primary-color);
+    border-right: 1px solid var(--primary-color);
+    border-bottom: none;
+    border-left: 1px solid var(--primary-color);
+
+    &::after {
+      content: '';
+      position: absolute;
+      background-color: #fff;
+      left: 0;
+      width: 100%;
+      height: var(--base-size);
+      bottom: -4px;
+    }
+  }
+}

@@ -1,11 +1,24 @@
 .root {
-}
-
-.action {
-  &:last-child {
-    margin-left: 10px;
+  &:not(.root-last) {
+    border-bottom: 1px dashed var(--border-color);
   }
-  &:first-child {
-    margin-right: 10px;
+
+  &-order {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &-action {
+    &:last-child {
+      margin-left: 10px;
+    }
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+
+  p {
+    margin: var(--base-size) 0;
   }
 }

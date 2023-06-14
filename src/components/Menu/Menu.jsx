@@ -1,5 +1,6 @@
 import { Dish } from "@/components/Dish/Dish";
 import React from "react";
+import styles from "./styles.module.scss"
 
 /* eslint-disable react/jsx-key */
 export const Menu = ({ menu }) => {
@@ -8,12 +9,12 @@ export const Menu = ({ menu }) => {
   }
 
   return (
-    <div>
-      <h3>Menu</h3>
-      <ul>
-        {menu.map((dish) => (
-          <li>
-            <Dish dish={dish} />
+    <div className={styles.root}>
+      <h3 className={styles['root-name']}>Menu</h3>
+      <ul className={styles['root-list']}>
+        {menu.map((dish, index) => (
+          <li key={dish.id}>
+            <Dish dish={dish} last={index === menu.length - 1}/>
           </li>
         ))}
       </ul>

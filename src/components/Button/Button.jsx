@@ -4,8 +4,7 @@ import styles from "./styles.module.scss";
 import classNames from "classnames";
 
 const ViewVariantStyle = {
-  primary: styles.primary,
-  secondary: styles.secondary,
+  circle: styles['button-circle']
 };
 
 export const Button = ({
@@ -13,7 +12,7 @@ export const Button = ({
   onClick,
   disabled,
   className,
-  viewVariant = "primary",
+  shape,
 }) => {
   return (
     <button
@@ -22,13 +21,13 @@ export const Button = ({
       className={classNames(
         styles.root,
         className,
-        ViewVariantStyle[viewVariant],
         {
-          [styles.disabled]: disabled,
-        }
+          [ViewVariantStyle[shape]]: ViewVariantStyle[shape],
+          [styles.root-disabled]: disabled,
+        },
       )}
     >
-      {children}
+      <span>{children}</span>
     </button>
   );
 };

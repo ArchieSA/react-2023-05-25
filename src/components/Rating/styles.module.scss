@@ -1,0 +1,9 @@
+.root {
+  &-item {
+    margin-right: var(--half-size);
+
+    &:not(.root-item-disabled) {
+      cursor: pointer;
+    }
+  }
+}

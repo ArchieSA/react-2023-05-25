@@ -1,18 +1,33 @@
 .root {
+  --button-size: 24px;
+  --button-text-size: 16px;
+  --button-bg-color: #fff;
+  --button-ng-color-hovered: rgba(0, 0, 0, 0.12);
+
+  position: relative;
+  width: var(--button-size);
+  height: var(--button-size);
+  padding: var(--half-size);
   border: none;
-  padding: 12px;
+  cursor: pointer;
+  font-size: var(--button-text-size);
+  font-weight: 500;
+  line-height: 1;
+  background-color: var(--button-bg-color);
+  border: 1px solid var(--border-color);
+  transition: background-color 200ms ease-in-out;
+
+  &:hover {
+    background-color: var(--button-ng-color-hovered);
+  }
+
+  &-disabled {
+    opacity: 0.3;
+  }
 }
 
-.disabled {
-  opacity: 0.3;
-}
-
-.primary {
-  background-color: rgb(236, 91, 1);
-}
-
-.secondary {
-  background-color: rgba(142, 110, 91, 0.925);
-  border: 1px solid grey;
-  border-radius: 8px;
+.button {
+  &-circle {
+    border-radius: 50%;
+  }
 }

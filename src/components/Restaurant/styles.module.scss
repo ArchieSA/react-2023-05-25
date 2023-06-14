@@ -1,0 +1,33 @@
+.root {
+  padding: calc(var(--base-size) * 2) var(--base-size);
+  border: 1px solid var(--primary-color);
+
+  &-name {
+    margin: 0 0 20px;
+    text-align: center;
+  }
+
+  &-body {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+
+  &-img {
+    position: relative;
+    box-sizing: border-box;
+    width: 35%;
+    background-color: var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-content {
+    position: relative;
+    box-sizing: border-box;
+    width: calc(100% - 35% - var(--base-size));
+    padding: 0 var(--base-size);
+  }
+}

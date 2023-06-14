@@ -3,9 +3,11 @@ import React, { useState } from "react";
 
 import styles from "./styles.module.scss";
 import { Button } from "@/components/Button/Button";
+import { useCount } from "@/hooks/useCounter";
+
 
 export const Dish = ({ dish }) => {
-  const [count, setCount] = useState(0);
+  const { count, increment, decrement } = useCount();
 
   if (!dish) {
     return null;
@@ -19,7 +21,7 @@ export const Dish = ({ dish }) => {
       <p>{price}</p>
       <div>
         <Button
-          onClick={() => setCount(count - 1)}
+          onClick={() => decrement()}
           disabled={count === 0}
           className={styles.action}
         >
@@ -27,7 +29,7 @@ export const Dish = ({ dish }) => {
         </Button>
         {count}
         <Button
-          onClick={() => setCount(count + 1)}
+          onClick={() => increment()}
           disabled={count === 5}
           className={styles.action}
           viewVariant="secondary"

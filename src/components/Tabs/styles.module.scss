@@ -1,0 +1,19 @@
+.tabs {
+  position: relative;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;   
+
+  display: flex;
+
+  &:first-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+
+  &:last-child {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+}

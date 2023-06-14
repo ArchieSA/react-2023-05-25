@@ -1,0 +1,22 @@
+.tab {
+  --active-tab: blue;
+
+  padding: 5px;
+  margin: 0 5px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  &:first-child {
+    margin: 0;
+  }
+
+  &:last-child {
+    margin: 0;
+  }
+}
+
+.active {
+  border-bottom: 1px solid var(--active-tab);
+}

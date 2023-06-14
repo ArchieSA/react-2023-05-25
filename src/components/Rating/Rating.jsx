@@ -10,7 +10,7 @@ export const Rating = ({ value, onChange }) => {
         return (
           <button 
             onClick={() => onChange(index + 1)} 
-            disabled={value === index + 1 && true }
+            disabled={value === index + 1}
           >{index + 1}</button>
       )})}
     </div>

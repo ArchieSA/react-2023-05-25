@@ -46,6 +46,7 @@ export const Restaurants = ({ restaurants }) => {
       <div>
         {filteredRestaurants.map(({ name }, index) => (
           <Button
+          key={index}
             onClick={() => {
               setActiveRestaurantIndex(index);
             }}
@@ -55,7 +56,7 @@ export const Restaurants = ({ restaurants }) => {
         ))}
       </div>
       {filteredRestaurants[activeRestaurantIndex] ? (
-        <Restaurant restaurant={filteredRestaurants[activeRestaurantIndex]} />
+        <Restaurant restaurant={filteredRestaurants[activeRestaurantIndex] } index={activeRestaurantIndex}/>
       ) : (
         <span>Нету</span>
       )}

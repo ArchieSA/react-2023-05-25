@@ -1,5 +1,7 @@
 import { Rating } from "@/components/Rating/Rating";
 import React, { useReducer, useState } from "react";
+import styles from "./styles.module.scss";
+import classNames from "classnames";
 
 const initialState = {
   name: "",
@@ -26,12 +28,13 @@ const reducer = (state, { type, payload } = {}) => {
   }
 };
 
-export const NewReviewForm = () => {
+export const NewReviewForm = ({position}) => {
   const [form, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <div>
-      <div>
+    // внешний отступ передал через проп, чем-то похоже на БЭМ где сам элемент незнает про соседей
+    <div className={classNames(styles.root, position)}>
+      <div className={styles.label}>
         <label>Name</label>
         <input
           value={form.name}
@@ -40,7 +43,7 @@ export const NewReviewForm = () => {
           }
         />
       </div>
-      <div>
+      <div className={styles.label}>
         <label>Text</label>
         <input
           value={form.text}

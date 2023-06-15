@@ -4,15 +4,16 @@
 }
 
 .disabled {
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .primary {
   background-color: rgb(236, 91, 1);
+  border-radius: 8px;
 }
 
 .secondary {
   background-color: rgba(142, 110, 91, 0.925);
-  border: 1px solid grey;
+  border: 1px solid grey; 
   border-radius: 8px;
 }

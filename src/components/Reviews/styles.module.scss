@@ -1,0 +1,8 @@
+@import '../../scss/abstracts/index';
+.list {
+  @include reset;
+
+  .listItem {
+    list-style: none;
+  }
+}

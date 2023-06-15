@@ -1,0 +1,14 @@
+@import '../../scss/abstracts/index';
+.list {
+  @include reset;
+  margin-top: 10px;
+
+  .listItem {
+    list-style: none;
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

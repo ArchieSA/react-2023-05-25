@@ -1,0 +1,10 @@
+@mixin reset {
+  padding: 0;
+  margin: 0;
+}
+
+@mixin border($b-width, $b-style, $b-color) {
+  border-width: $b-width;
+  border-style: $b-style;
+  border-color: $b-color;
+}

@@ -1,11 +1,10 @@
-import React from "react";
-
-import styles from "./styles.module.scss";
-import classNames from "classnames";
+import classNames from 'classnames';
+import styles from './styles.module.scss';
 
 const ViewVariantStyle = {
   primary: styles.primary,
   secondary: styles.secondary,
+  tab: styles.tab,
 };
 
 export const Button = ({
@@ -13,7 +12,7 @@ export const Button = ({
   onClick,
   disabled,
   className,
-  viewVariant = "primary",
+  viewVariant = 'primary',
 }) => {
   return (
     <button

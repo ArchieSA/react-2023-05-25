@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-key */
-import React, { useState } from "react";
 
-import styles from "./styles.module.scss";
-import { Button } from "@/components/Button/Button";
+import { Button } from '@/components/Button/Button';
+import { useCount } from '@/hooks/useCount';
+import styles from './styles.module.scss';
 
 export const Dish = ({ dish }) => {
-  const [count, setCount] = useState(0);
+  const { count, decrement, increment } = useCount(0);
 
   if (!dish) {
     return null;
@@ -15,29 +15,33 @@ export const Dish = ({ dish }) => {
 
   return (
     <div className={styles.root}>
-      <p>{name}</p>
-      <p>{price}</p>
-      <div>
-        <Button
-          onClick={() => setCount(count - 1)}
-          disabled={count === 0}
-          className={styles.action}
-        >
-          -
-        </Button>
-        {count}
-        <Button
-          onClick={() => setCount(count + 1)}
-          disabled={count === 5}
-          className={styles.action}
-          viewVariant="secondary"
-        >
-          +
-        </Button>
+      <div className={styles.wrapper}>
+        <div className={styles.infoContainer}>
+          <p>{name}</p>
+          <p>{price}</p>
+        </div>
+        <div className={styles.countContainer}>
+          <Button
+            className={styles.button}
+            onClick={decrement}
+            disabled={count === 0}
+          >
+            -
+          </Button>
+          {count}
+          <Button
+            className={styles.button}
+            onClick={increment}
+            disabled={count === 5}
+            viewVariant='secondary'
+          >
+            +
+          </Button>
+        </div>
       </div>
       {count > 0 && (
-        <ul>
-          {ingredients.map((ingredient) => (
+        <ul className={styles.list}>
+          {ingredients.map(ingredient => (
             <li>{ingredient}</li>
           ))}
         </ul>

@@ -1,10 +1,12 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/Button/Button";
 /* eslint-disable react/jsx-key */
-import { Restaurant } from "@/components/Restaurant/Restaurant";
-import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { Restaurant } from '@/components/Restaurant/Restaurant';
+import { useDebouncedCallback } from '@/hooks/useDebounceCallback';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { FormSearch } from '../FormSearch/FormSearch';
+import { Tabs } from '../Tabs/Tabs';
+import styles from './styles.module.scss';
 
 export const Restaurants = ({ restaurants }) => {
   let [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
@@ -22,7 +24,7 @@ export const Restaurants = ({ restaurants }) => {
   );
 
   const filterRestaurants = useCallback(
-    (searchValue) =>
+    searchValue =>
       setFilteredRestaurants(
         restaurants.filter(
           ({ name }) =>
@@ -36,29 +38,26 @@ export const Restaurants = ({ restaurants }) => {
 
   useEffect(() => {
     if (restaurants.length === 0) {
-      onChangeSearchValue("");
+      onChangeSearchValue('');
     }
   }, [onChangeSearchValue, restaurants]);
 
   return (
-    <div>
-      <input onChange={(event) => onChangeSearchValue(event.target.value)} />
-      <div>
-        {filteredRestaurants.map(({ name }, index) => (
-          <Button
-            onClick={() => {
-              setActiveRestaurantIndex(index);
-            }}
-          >
-            {name}
-          </Button>
-        ))}
+    <section className={styles.root}>
+      <div className={styles.tabsContainer}>
+        <FormSearch
+          onChange={event => onChangeSearchValue(event.target.value)}
+        />
+        <Tabs
+          restaurants={filteredRestaurants}
+          onSwitch={setActiveRestaurantIndex}
+        />
       </div>
       {filteredRestaurants[activeRestaurantIndex] ? (
         <Restaurant restaurant={filteredRestaurants[activeRestaurantIndex]} />
       ) : (
         <span>Нету</span>
       )}
-    </div>
+    </section>
   );
 };

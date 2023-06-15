@@ -1,9 +1,17 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/no-children-prop */
-import React from "react";
-import { restaurants } from "@/mocks";
-import { Restaurants } from "@/components/Restaurants/Restaurants";
+import { Header } from '@/components/Header/Header';
+import { Main } from '@/components/Main/Main';
+import { Restaurants } from '@/components/Restaurants/Restaurants';
+import { restaurants } from '@/mocks';
 
 export default function Home() {
-  return <Restaurants restaurants={restaurants} />;
+  return (
+    <>
+      <Header />
+      <Main>
+        <Restaurants restaurants={restaurants} />
+      </Main>
+    </>
+  );
 }

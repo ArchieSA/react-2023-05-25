@@ -1,0 +1,10 @@
+@import '../../scss/abstracts/index';
+
+.root {
+  width: 80%;
+  .tabsContainer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+}

@@ -1,11 +1,35 @@
-.root {
-}
+@import '../../scss/abstracts/index';
 
-.action {
-  &:last-child {
-    margin-left: 10px;
+.root {
+  @include border(1px, solid, lightgrey);
+  max-width: 400px;
+  width: 100%;
+  padding: 25px;
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-  &:first-child {
-    margin-right: 10px;
+
+  .infoContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
   }
+
+  .countContainer {
+    display: flex;
+    width: 50%;
+  }
+  .list {
+    @include reset;
+    list-style: none;
+  }
+}
+.button {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  text-align: center;
 }

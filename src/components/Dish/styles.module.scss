@@ -1,4 +1,13 @@
 .root {
+  display: flex;
+  align-items: center;
+}
+
+.sider {
+  width: 450px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .action {

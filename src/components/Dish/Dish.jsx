@@ -16,26 +16,31 @@ export const Dish = ({ dish }) => {
 
   return (
     <div className={styles.root}>
-      <p>{name}</p>
-      <p>{price}</p>
-      <div>
-        <Button
-          // как  вариант можно передавать не евент а заданый пропс
-          onClick={(event) => calc(event.target.innerHTML)}
-          disabled={min}
-          className={styles.action}
-        >
-          -
-        </Button>
-        {count}
-        <Button
-          onClick={(event) => calc(event.target.innerHTML)}
-          disabled={max}
-          className={styles.action}
-          viewVariant="secondary"
-        >
-          +
-        </Button>
+      <div className={styles.sider}>
+        <div>
+          <p>{name}</p>
+          <p>Price: {price}</p>
+        </div>
+        <div>
+          <Button
+            // как  вариант можно передавать не евент а заданый пропс
+            onClick={(event) => calc(event.target.innerHTML)}
+            disabled={min}
+            className={styles.action}
+            viewVariant="secondary"
+          >
+            -
+          </Button>
+          {count}
+          <Button
+            onClick={(event) => calc(event.target.innerHTML)}
+            disabled={max}
+            className={styles.action}
+            viewVariant="secondary"
+          >
+            +
+          </Button>
+        </div>
       </div>
       {count > 0 && (
         <ul>

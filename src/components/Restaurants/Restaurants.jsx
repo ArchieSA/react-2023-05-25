@@ -5,6 +5,8 @@ import { Button } from "@/components/Button/Button";
 import { Restaurant } from "@/components/Restaurant/Restaurant";
 import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+import styles from "./styles.module.scss";
+
 
 export const Restaurants = ({ restaurants }) => {
   let [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
@@ -41,12 +43,13 @@ export const Restaurants = ({ restaurants }) => {
   }, [onChangeSearchValue, restaurants]);
 
   return (
-    <div>
-      <input onChange={(event) => onChangeSearchValue(event.target.value)} />
-      <div>
+    <div className={styles.root}>
+      <input onChange={(event) => onChangeSearchValue(event.target.value)} className={styles.input}/>
+      <div className={styles.buttons}>
         {filteredRestaurants.map(({ name }, index) => (
           <Button
-          key={index}
+            key={index}
+            disabled={index === activeRestaurantIndex}
             onClick={() => {
               setActiveRestaurantIndex(index);
             }}
@@ -56,7 +59,7 @@ export const Restaurants = ({ restaurants }) => {
         ))}
       </div>
       {filteredRestaurants[activeRestaurantIndex] ? (
-        <Restaurant restaurant={filteredRestaurants[activeRestaurantIndex] }/>
+        <Restaurant restaurant={filteredRestaurants[activeRestaurantIndex]} />
       ) : (
         <span>Нету</span>
       )}

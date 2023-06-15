@@ -1,5 +1,6 @@
-import { Review } from "@/components/Review/Review";
-import React from "react";
+import { Review } from '@/components/Review/Review';
+import { Htag } from '../Htag/Htag';
+import styles from './styles.module.scss';
 
 /* eslint-disable react/jsx-key */
 export const Reviews = ({ reviews }) => {
@@ -9,10 +10,10 @@ export const Reviews = ({ reviews }) => {
 
   return (
     <div>
-      <h3>Reviews</h3>
-      <ul>
-        {reviews.map((review) => (
-          <li>
+      <Htag tag={'h3'} value={'Reviews'} />
+      <ul className={styles.list}>
+        {reviews.map(review => (
+          <li className={styles.listItem}>
             <Review review={review} />
           </li>
         ))}

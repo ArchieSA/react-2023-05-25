@@ -1,0 +1,11 @@
+@import '../../scss/abstracts/index';
+.root {
+  background-color: $bg-color-header;
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+
+  .wrapper {
+  }
+}

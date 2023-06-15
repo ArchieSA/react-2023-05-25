@@ -1,0 +1,22 @@
+@import '../../scss/abstracts/index';
+.root {
+  width: auto;
+  float: right;
+  margin-right: 30px;
+  background: transparent;
+
+  .input {
+    @include border(1px, solid, $ui-color-btn-default);
+    width: 250px;
+    height: 42px;
+    padding-left: 15px;
+    border-radius: 10px;
+    outline: none;
+    position: relative;
+    transition: 0.3s linear;
+
+    &:focus {
+      width: 300px;
+    }
+  }
+}

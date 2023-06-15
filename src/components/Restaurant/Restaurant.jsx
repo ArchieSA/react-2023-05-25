@@ -4,7 +4,7 @@ import { NewReviewForm } from "@/components/NewReviewForm/NewReviewForm";
 import { Reviews } from "@/components/Reviews/Reviews";
 import React from "react";
 
-export const Restaurant = ({ restaurant, index }) => {
+export const Restaurant = ({ restaurant }) => {
   if (!restaurant) {
     return null;
   }
@@ -14,7 +14,7 @@ export const Restaurant = ({ restaurant, index }) => {
   return (
     <div>
       <h2>{name}</h2>
-      <Menu menu={menu} index={index}/>
+      <Menu menu={menu} />
       <Reviews reviews={reviews} />
       <NewReviewForm />
     </div>

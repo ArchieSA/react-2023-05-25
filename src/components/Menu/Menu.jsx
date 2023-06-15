@@ -2,7 +2,7 @@ import { Dish } from "@/components/Dish/Dish";
 import React from "react";
 
 /* eslint-disable react/jsx-key */
-export const Menu = ({ menu, index }) => {
+export const Menu = ({ menu }) => {
   if (!menu?.length) {
     return <span>Empty Menu</span>;
   }
@@ -13,7 +13,7 @@ export const Menu = ({ menu, index }) => {
       <ul>
         {menu.map((dish, i) => (
           <li  key={i}>
-            <Dish dish={dish} index={index} />
+            <Dish dish={dish} />
           </li>
         ))}
       </ul>

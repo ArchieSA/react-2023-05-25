@@ -5,12 +5,8 @@ import styles from "./styles.module.scss";
 import { Button } from "@/components/Button/Button";
 import { useDishCount } from "@/hooks/useDishCount";
 
-export const Dish = ({ dish, index }) => {
-  // const [count, setCount] = useState(0);
-  const [arr, calc] = useDishCount(dish, index);
-  let velueCount =  Array.from(arr)[index]?.count;
-  console.log(`index`, index);
-  console.log(`hookResolve`, velueCount);
+export const Dish = ({ dish }) => {
+  const [count, calc, {min, max} ] = useDishCount(dish);
 
   if (!dish) {
     return null;
@@ -24,25 +20,24 @@ export const Dish = ({ dish, index }) => {
       <p>{price}</p>
       <div>
         <Button
-          // onClick={() => setCount(count - 1)}
+          // как  вариант можно передавать не евент а заданый пропс
           onClick={(event) => calc(event.target.innerHTML)}
-          // disabled={count === 0}
+          disabled={min}
           className={styles.action}
         >
           -
         </Button>
-        {velueCount}
+        {count}
         <Button
-          // onClick={() => setCount(count + 1)}
           onClick={(event) => calc(event.target.innerHTML)}
-          // disabled={count === 5}
+          disabled={max}
           className={styles.action}
           viewVariant="secondary"
         >
           +
         </Button>
       </div>
-      {velueCount > 0 && (
+      {count > 0 && (
         <ul>
           {ingredients.map((ingredient, i) => (
             <li key={i}>{ingredient}</li>

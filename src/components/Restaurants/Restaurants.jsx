@@ -56,7 +56,7 @@ export const Restaurants = ({ restaurants }) => {
         ))}
       </div>
       {filteredRestaurants[activeRestaurantIndex] ? (
-        <Restaurant restaurant={filteredRestaurants[activeRestaurantIndex] } index={activeRestaurantIndex}/>
+        <Restaurant restaurant={filteredRestaurants[activeRestaurantIndex] }/>
       ) : (
         <span>Нету</span>
       )}

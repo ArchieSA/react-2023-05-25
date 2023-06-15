@@ -1,22 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 
-export function useDishCount(setter, index) {
-    const [count, setCount] = useState(setter?.count)
-    // console.log(`setter`, setter);
+export function useDishCount(dish) {
+    const [count, setCount] = useState(0);
 
-    const arr = useRef(new Set());
-    // const value = useRef();
+    // в юзРеф хранюс остояие кнопки (обусловлено большей стабильностью чем создавать переменную на каждый вызов хука)
+    const disabled = useRef(
+        {
+            min: false,
+            max: false,
+        }
+    );
 
+
+    // сбрасываю счетчик блюд при переключении ресторанов (был баг с сохранением количества)
     useEffect(() => {
-        setCount(0)
-    }, [index])
+        setCount(0);
+    }, [dish]);
 
-    // if (name === setter.name) {
-    //     console.log(`tru`);
-    // }
 
+    // проверка состояния
+    if (count === 0) { disabled.current.min = true } else { disabled.current.min = false };
+    if (count === 5) {disabled.current.max = true} else {disabled.current.max = false};
+
+
+    // функция принимает значение кнопки и исходя из него производит операцию
+    // оборачивать в юзКолбек нет необходимости так как у функции нет внешней зависимости
     const calc = (param) => {
-
         switch (param) {
             case '-':
                 setCount(count - 1);
@@ -24,40 +33,14 @@ export function useDishCount(setter, index) {
             case '+':
                 setCount(count + 1);
                 break;
+            // при необходимости можно добавть операции для разных кнопок
+            default:
+                console.log('Не передано условие');
+                break;
         };
-    }
+    };
 
-    setter.count = count;
-    // arr.current.push(setter)
-    arr.current.add(setter)
-
-    // value.current = setter;
-    // console.log(`downHoohObj`, value.current);
-    console.log(`arr`, arr.current);
-
-    // const clear = () => {
-    //     if (value.current) {
-    //         console.log(`clear`);
-    //         value.current = null
-    //     }
-
-    // }
-    // useEffect(() => {
-    //     return clear;
-    // }, [])
-    // let count = 0;
-
-    // const calculate = (param) => {
-    //     console.log(` count.current`, value.current);
-    //         value.current = param + 1;
-    //         count.current = () => setter(value.current);
-    //         count.current();
-
-    //     //     // return count.current;
-    // };
-
-
-    return [arr.current, calc];
+    return [count, calc, disabled.current];
 }
 
 

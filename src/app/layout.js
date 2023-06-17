@@ -2,6 +2,7 @@ import { Layout } from "@/components/Layout/Layout";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/contexts/theme";
+import { DesctopProvider } from "@/contexts/desktop";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +15,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider>
-          <Layout>{children}</Layout>
-        </ThemeProvider>
+        <DesctopProvider>
+          <ThemeProvider>
+            <Layout>{children}</Layout>
+          </ThemeProvider>
+        </DesctopProvider>
       </body>
     </html>
   );

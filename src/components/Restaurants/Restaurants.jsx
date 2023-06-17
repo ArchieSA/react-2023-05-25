@@ -43,7 +43,10 @@ export const Restaurants = ({ restaurants }) => {
     if (restaurants.length === 0) {
       onChangeSearchValue('');
     }
-  }, [onChangeSearchValue, restaurants]);
+    if (isMobile) {
+      onChangeSearchValue('');
+    }
+  }, [onChangeSearchValue, restaurants, isMobile]);
 
   return (
     <div className={styles.root}>

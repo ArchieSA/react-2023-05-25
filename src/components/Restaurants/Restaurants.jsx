@@ -1,16 +1,19 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/Button/Button";
+import { Button } from '@/components/Button/Button';
 /* eslint-disable react/jsx-key */
-import { Restaurant } from "@/components/Restaurant/Restaurant";
-import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { Restaurant } from '@/components/Restaurant/Restaurant';
+import { useVersion } from '@/contexts/version';
+import { useDebouncedCallback } from '@/hooks/useDebounceCallback';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 export const Restaurants = ({ restaurants }) => {
   let [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
   let [activeRestaurantIndex, setActiveRestaurantIndex] = useState(0);
+  const { version } = useVersion();
+  const isMobile = version === 'mobile';
 
   const value = useMemo(
     () => ({
@@ -24,7 +27,7 @@ export const Restaurants = ({ restaurants }) => {
   );
 
   const filterRestaurants = useCallback(
-    (searchValue) =>
+    searchValue =>
       setFilteredRestaurants(
         restaurants.filter(
           ({ name }) =>
@@ -38,17 +41,22 @@ export const Restaurants = ({ restaurants }) => {
 
   useEffect(() => {
     if (restaurants.length === 0) {
-      onChangeSearchValue("");
+      onChangeSearchValue('');
     }
-  }, [onChangeSearchValue, restaurants]);
+    if (isMobile) {
+      onChangeSearchValue('');
+    }
+  }, [onChangeSearchValue, restaurants, isMobile]);
 
   return (
     <div className={styles.root}>
-      <input
-        onChange={(event) => onChangeSearchValue(event.target.value)}
-        className={styles.searchFiled}
-        placeholder="Введите название ресторана"
-      />
+      {!isMobile && (
+        <input
+          onChange={event => onChangeSearchValue(event.target.value)}
+          className={styles.searchFiled}
+          placeholder='Введите название ресторана'
+        />
+      )}
       <div className={styles.filters}>
         {filteredRestaurants.map(({ name }, index) => (
           <Button

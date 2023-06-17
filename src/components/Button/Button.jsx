@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
-
-import styles from "./styles.module.scss";
-import classNames from "classnames";
-import { ThemeContext, useTheme } from "@/contexts/theme";
+import { useTheme } from '@/contexts/theme';
+import classNames from 'classnames';
+import styles from './styles.module.scss';
 
 const ViewVariantStyle = {
   primary: styles.primary,
   secondary: styles.secondary,
+  switcher: styles.switcher,
 };
 
 const ThemeStyle = {
@@ -19,7 +18,7 @@ export const Button = ({
   onClick,
   disabled,
   className,
-  viewVariant = "primary",
+  viewVariant = 'primary',
 }) => {
   const theme = useTheme();
 

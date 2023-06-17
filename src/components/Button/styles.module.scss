@@ -50,3 +50,13 @@
     color: white;
   }
 }
+
+.switcher {
+  background-color: transparent;
+  border: none;
+  color: white;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}

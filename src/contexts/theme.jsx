@@ -25,6 +25,8 @@ export const ThemeProvider = ({ children }) => {
   });
 
   const switchTheme = useCallback(() => {
+    console.log(`test`);
+
     setTheme((currentTheme) => {
       const newTheme = currentTheme === "default" ? "alternative" : "default";
       localStorage.setItem("theme", newTheme);

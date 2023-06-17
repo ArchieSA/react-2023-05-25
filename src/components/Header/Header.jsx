@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useContext } from "react";
 import classNames from "classnames";
 import Image from "next/image";

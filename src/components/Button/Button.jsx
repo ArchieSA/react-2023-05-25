@@ -7,6 +7,7 @@ import { ThemeContext, useTheme } from "@/contexts/theme";
 const ViewVariantStyle = {
   primary: styles.primary,
   secondary: styles.secondary,
+  text: styles.text,
 };
 
 const ThemeStyle = {

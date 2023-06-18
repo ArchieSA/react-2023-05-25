@@ -1,5 +1,4 @@
-"use client";
-
+'use client';
 import React, { useCallback, useContext, useMemo, useState } from "react";
 
 const context = React.createContext("default"); // default || alternative
@@ -17,7 +16,7 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     let initialTheme = "default";
 
-    if (window) {
+    if (typeof window !== 'undefined') {
       initialTheme = localStorage.getItem("theme") || "default";
     }
 

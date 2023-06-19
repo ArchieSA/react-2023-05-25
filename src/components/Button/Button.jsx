@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import styles from "./styles.module.scss";
 import classNames from "classnames";
-import { ThemeContext, useTheme } from "@/contexts/theme";
+import { useTheme } from "@/contexts/theme";
 
 const ViewVariantStyle = {
   primary: styles.primary,
   secondary: styles.secondary,
+  link: styles.link,
 };
 
 const ThemeStyle = {

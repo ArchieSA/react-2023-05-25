@@ -9,11 +9,6 @@
   top: 0;
 }
 
-.content {
-  width: 500px;
-  margin: 10px auto;
-}
-
 .footer {
   display: flex;
   width: 100%;
@@ -24,6 +19,11 @@
   background-color: black;
 
   color: white;
+}
+
+.content {
+  width: 500px;
+  margin: 10px auto;
 }
 
 .link {

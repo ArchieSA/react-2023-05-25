@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.review {
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.reviews {
+  margin-top: 20px;
+}

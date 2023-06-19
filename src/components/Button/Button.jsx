@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import styles from "./styles.module.scss";
 import classNames from "classnames";
+import { ThemeContext, useTheme } from "@/contexts/theme";
 
 const ViewVariantStyle = {
   primary: styles.primary,
   secondary: styles.secondary,
+};
+
+const ThemeStyle = {
+  default: styles.default,
+  alternative: styles.alternative,
 };
 
 export const Button = ({
@@ -15,6 +21,8 @@ export const Button = ({
   className,
   viewVariant = "primary",
 }) => {
+  const theme = useTheme();
+
   return (
     <button
       onClick={onClick}
@@ -23,6 +31,7 @@ export const Button = ({
         styles.root,
         className,
         ViewVariantStyle[viewVariant],
+        ThemeStyle[theme],
         {
           [styles.disabled]: disabled,
         }

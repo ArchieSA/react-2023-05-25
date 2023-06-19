@@ -1,18 +1,52 @@
 .root {
-  border: none;
-  padding: 12px;
-}
+  padding: 5px 10px;
 
-.disabled {
-  opacity: 0.3;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: default;
+
+    &:hover {
+      opacity: 0.5;
+      transform: none;
+    }
+  }
 }
 
 .primary {
-  background-color: rgb(236, 91, 1);
+  border-radius: 4px;
+  border: none;
 }
 
 .secondary {
-  background-color: rgba(142, 110, 91, 0.925);
-  border: 1px solid grey;
-  border-radius: 8px;
+  border-radius: 4px;
+  border: 1px solid rgb(62, 62, 62);
+}
+
+.default {
+  &.primary {
+    background-color: rgb(230, 69, 11);
+    color: white;
+  }
+  &.secondary {
+    background-color: rgb(206, 206, 206);
+  }
+}
+
+.alternative {
+  &.primary {
+    background-color: rgb(114, 31, 0);
+    color: white;
+  }
+  &.secondary {
+    background-color: rgb(51, 51, 51);
+    color: white;
+  }
 }

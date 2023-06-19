@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-key */
 import { Menu } from "@/components/Menu/Menu";
-import { NewReviewForm } from "@/components/NewReviewForm/NewReviewForm";
 import { Reviews } from "@/components/Reviews/Reviews";
 import React from "react";
+
+import styles from "./styles.module.scss";
 
 export const Restaurant = ({ restaurant }) => {
   if (!restaurant) {
@@ -14,9 +15,8 @@ export const Restaurant = ({ restaurant }) => {
   return (
     <div>
       <h2>{name}</h2>
-      <Menu menu={menu} />
-      <Reviews reviews={reviews} />
-      <NewReviewForm />
+      <Menu menu={menu} className={styles.menu} />
+      <Reviews reviews={reviews} className={styles.reviews} />
     </div>
   );
 };

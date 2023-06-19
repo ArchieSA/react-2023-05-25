@@ -1,11 +1,26 @@
 .root {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.action {
-  &:last-child {
-    margin-left: 10px;
-  }
-  &:first-child {
-    margin-right: 10px;
-  }
+.decrementAction {
+  margin-right: 5px;
+}
+
+.incrementAction {
+  margin-left: 5px;
+}
+
+.title {
+  margin-right: auto;
+}
+
+.price {
+  margin-right: 10px;
+}
+
+.sum {
+  margin-right: 10px;
 }

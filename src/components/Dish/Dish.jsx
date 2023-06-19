@@ -3,45 +3,40 @@ import React, { useState } from "react";
 
 import styles from "./styles.module.scss";
 import { Button } from "@/components/Button/Button";
+import { useAmount } from "@/hooks/useAmount";
+import classNames from "classnames";
 
-export const Dish = ({ dish }) => {
-  const [count, setCount] = useState(0);
+export const Dish = ({ dish, className }) => {
+  const { amount, decrement, increment } = useAmount();
 
   if (!dish) {
     return null;
   }
 
-  const { name, price, ingredients } = dish;
+  const { name, price } = dish;
 
   return (
-    <div className={styles.root}>
-      <p>{name}</p>
-      <p>{price}</p>
-      <div>
-        <Button
-          onClick={() => setCount(count - 1)}
-          disabled={count === 0}
-          className={styles.action}
-        >
-          -
-        </Button>
-        {count}
-        <Button
-          onClick={() => setCount(count + 1)}
-          disabled={count === 5}
-          className={styles.action}
-          viewVariant="secondary"
-        >
-          +
-        </Button>
-      </div>
-      {count > 0 && (
-        <ul>
-          {ingredients.map((ingredient) => (
-            <li>{ingredient}</li>
-          ))}
-        </ul>
-      )}
+    <div className={classNames(styles.root, className)}>
+      <span className={styles.title}>{name}</span>
+      <span className={styles.price}>{price}р</span>
+      {amount > 0 && <span className={styles.sum}>{amount * price}р</span>}
+      <Button
+        className={styles.decrementAction}
+        viewVariant="secondary"
+        disabled={amount === 0}
+        onClick={decrement}
+      >
+        -
+      </Button>
+      {amount}
+      <Button
+        className={styles.incrementAction}
+        viewVariant="secondary"
+        disabled={amount === 5}
+        onClick={increment}
+      >
+        +
+      </Button>
     </div>
   );
 };

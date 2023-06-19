@@ -30,6 +30,16 @@
   border: 1px solid rgb(62, 62, 62);
 }
 
+.inline {
+  border: none;
+  background-color: transparent;
+  color: white;
+  &:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+}
+
 .default {
   &.primary {
     background-color: rgb(230, 69, 11);

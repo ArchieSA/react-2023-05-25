@@ -28,6 +28,22 @@
 .secondary {
   border-radius: 4px;
   border: 1px solid rgb(62, 62, 62);
+  font-size: larger;
+}
+
+.link {
+  display: inline-block;
+  border: none;
+  background: none !important;
+  padding: 0;
+  color: white;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-right: 5px;
+    padding-right: 5px;
+    border-right: 1px solid white;
+  }
 }
 
 .default {

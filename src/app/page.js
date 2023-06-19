@@ -1,11 +1,11 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable react/no-children-prop */
 "use client";
+/* eslint-disable react/no-children-prop */
 
-import React from "react";
-import { restaurants } from "@/mocks";
-import { Restaurants } from "@/components/Restaurants/Restaurants";
 
-export default function Home() {
-  return <Restaurants restaurants={restaurants} />;
-}
+import dynamic from "next/dynamic";
+
+const Home = dynamic(() => import("../components/pages/HomePage/HomePage"), {
+  ssr: false,
+});
+
+export default Home;

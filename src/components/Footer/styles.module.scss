@@ -1,0 +1,23 @@
+.root {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  padding: 10px 15px;
+}
+
+.links {
+}
+
+.link {
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useCallback, useContext, useMemo, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
+
+const THEME_KEY = 'theme'
 
 const context = React.createContext("default"); // default || alternative
-const setterContext = React.createContext(() => {}); // default || alternative
+const setterContext = React.createContext((state = {}) => state); // default || alternative
 
 export const useTheme = () => {
   return useContext(context);
@@ -17,8 +19,8 @@ export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     let initialTheme = "default";
 
-    if (window) {
-      initialTheme = localStorage.getItem("theme") || "default";
+    if (typeof window !== 'undefined') {
+      initialTheme = localStorage.getItem(THEME_KEY) || "default";
     }
 
     return initialTheme;
@@ -27,7 +29,7 @@ export const ThemeProvider = ({ children }) => {
   const switchTheme = useCallback(() => {
     setTheme((currentTheme) => {
       const newTheme = currentTheme === "default" ? "alternative" : "default";
-      localStorage.setItem("theme", newTheme);
+      localStorage.setItem(THEME_KEY, newTheme);
 
       return newTheme;
     });

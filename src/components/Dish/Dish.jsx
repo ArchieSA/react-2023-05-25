@@ -1,10 +1,12 @@
 /* eslint-disable react/jsx-key */
-import React, { useState } from "react";
+import React from "react";
 
 import styles from "./styles.module.scss";
+import classNames from "classnames";
+
 import { Button } from "@/components/Button/Button";
 import { useAmount } from "@/hooks/useAmount";
-import classNames from "classnames";
+import { DishSum } from "./DishSum";
 
 export const Dish = ({ dish, className }) => {
   const { amount, decrement, increment } = useAmount();
@@ -19,7 +21,13 @@ export const Dish = ({ dish, className }) => {
     <div className={classNames(styles.root, className)}>
       <span className={styles.title}>{name}</span>
       <span className={styles.price}>{price}р</span>
-      {amount > 0 && <span className={styles.sum}>{amount * price}р</span>}
+
+      <DishSum 
+        amount={amount}
+        price={price}
+        className={styles.sum}
+      />
+
       <Button
         className={styles.decrementAction}
         viewVariant="secondary"

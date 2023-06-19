@@ -50,3 +50,17 @@
     color: white;
   }
 }
+
+.link {
+  background-color: transparent;
+  border: none;
+
+  opacity: .7;
+
+  color: #fff;
+
+  &:hover {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

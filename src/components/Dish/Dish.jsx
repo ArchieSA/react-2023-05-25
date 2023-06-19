@@ -5,9 +5,12 @@ import styles from "./styles.module.scss";
 import { Button } from "@/components/Button/Button";
 import { useAmount } from "@/hooks/useAmount";
 import classNames from "classnames";
+import { useView } from "@/contexts/view";
 
 export const Dish = ({ dish, className }) => {
   const { amount, decrement, increment } = useAmount();
+
+  const view = useView();
 
   if (!dish) {
     return null;
@@ -19,7 +22,11 @@ export const Dish = ({ dish, className }) => {
     <div className={classNames(styles.root, className)}>
       <span className={styles.title}>{name}</span>
       <span className={styles.price}>{price}р</span>
-      {amount > 0 && <span className={styles.sum}>{amount * price}р</span>}
+      {view == "desktop" && amount > 0 ? (
+        <span className={styles.sum}>{amount * price}р</span>
+      ) : (
+        <></>
+      )}
       <Button
         className={styles.decrementAction}
         viewVariant="secondary"

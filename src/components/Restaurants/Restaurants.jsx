@@ -7,6 +7,7 @@ import { useDebouncedCallback } from "@/hooks/useDebounceCallback";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 import styles from "./styles.module.scss";
+import { useView } from "@/contexts/view";
 
 export const Restaurants = ({ restaurants }) => {
   let [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
@@ -36,6 +37,8 @@ export const Restaurants = ({ restaurants }) => {
 
   const onChangeSearchValue = useDebouncedCallback(filterRestaurants);
 
+  const view = useView();
+
   useEffect(() => {
     if (restaurants.length === 0) {
       onChangeSearchValue("");
@@ -44,11 +47,15 @@ export const Restaurants = ({ restaurants }) => {
 
   return (
     <div className={styles.root}>
-      <input
-        onChange={(event) => onChangeSearchValue(event.target.value)}
-        className={styles.searchFiled}
-        placeholder="Введите название ресторана"
-      />
+      {view == "desktop" ? (
+        <input
+          onChange={(event) => onChangeSearchValue(event.target.value)}
+          className={styles.searchFiled}
+          placeholder="Введите название ресторана"
+        />
+      ) : (
+        <></>
+      )}
       <div className={styles.filters}>
         {filteredRestaurants.map(({ name }, index) => (
           <Button

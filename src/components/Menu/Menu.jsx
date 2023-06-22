@@ -5,17 +5,17 @@ import classNames from "classnames";
 import { DishContainer } from "@/containers/DishContainer";
 
 /* eslint-disable react/jsx-key */
-export const Menu = ({ menu, className }) => {
-  if (!menu?.length) {
+export const Menu = ({ menuIds }) => {
+  if (!menuIds?.length) {
     return <span>Empty Menu</span>;
   }
 
   return (
-    <div className={classNames(styles.root, className)}>
+    <div className={classNames(styles.root, styles.menu)}>
       <h3>Menu</h3>
       <div className={styles.dishList}>
-        {menu.map((dish) => (
-          <DishContainer dish={dish} className={styles.dish} />
+        {menuIds.map((id) => (
+          <DishContainer dishId={id} className={styles.dish} />
         ))}
       </div>
     </div>

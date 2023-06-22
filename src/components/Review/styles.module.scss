@@ -11,3 +11,9 @@
 
   margin-bottom: 20px;
 }
+
+.review {
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}

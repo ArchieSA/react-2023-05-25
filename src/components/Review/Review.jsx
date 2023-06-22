@@ -3,16 +3,15 @@ import React from "react";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
 
-export const Review = ({ review, className }) => {
-  if (!review) {
-    return null;
-  }
+import { UserContainer } from "@/containers/UserContainer";
 
-  const { text, user, rating } = review;
+export const Review = ({ review, className }) => {
+  const { text, userId, rating } = review;
+
   return (
     <div className={classNames(styles.root, className)}>
       <div className={styles.header}>
-        <div>{user}</div>
+        <UserContainer userId={userId} />
         <div>{rating}</div>
       </div>
       <p>{text}</p>

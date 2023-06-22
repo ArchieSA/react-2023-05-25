@@ -3,15 +3,11 @@ import React, { useState } from "react";
 
 import styles from "./styles.module.scss";
 import { Button } from "@/components/Button/Button";
-import { useAmount } from "@/hooks/useAmount";
 import classNames from "classnames";
+import { useIsMobile } from "@/contexts/device";
 
-export const Dish = ({ dish, className }) => {
-  const { amount, decrement, increment } = useAmount();
-
-  if (!dish) {
-    return null;
-  }
+export const Dish = ({ dish, amount, increment, decrement, className }) => {
+  const isMobile = useIsMobile();
 
   const { name, price } = dish;
 
@@ -19,7 +15,9 @@ export const Dish = ({ dish, className }) => {
     <div className={classNames(styles.root, className)}>
       <span className={styles.title}>{name}</span>
       <span className={styles.price}>{price}р</span>
-      {amount > 0 && <span className={styles.sum}>{amount * price}р</span>}
+      {!isMobile && amount > 0 && (
+        <span className={styles.sum}>{amount * price}р</span>
+      )}
       <Button
         className={styles.decrementAction}
         viewVariant="secondary"

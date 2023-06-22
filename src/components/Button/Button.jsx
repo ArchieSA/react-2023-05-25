@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useContext } from "react";
 
 import styles from "./styles.module.scss";
@@ -7,6 +9,7 @@ import { ThemeContext, useTheme } from "@/contexts/theme";
 const ViewVariantStyle = {
   primary: styles.primary,
   secondary: styles.secondary,
+  inline: styles.inline,
 };
 
 const ThemeStyle = {

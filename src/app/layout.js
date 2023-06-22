@@ -2,6 +2,10 @@ import { Layout } from "@/components/Layout/Layout";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/contexts/theme";
+import { MobileVersionProvider } from "@/contexts/device";
+import { Provider } from "react-redux";
+import { store } from "@/redux";
+import { StoreProvider } from "@/redux/StoreProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +18,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider>
-          <Layout>{children}</Layout>
-        </ThemeProvider>
+        <StoreProvider>
+          <MobileVersionProvider>
+            <ThemeProvider>
+              <Layout>{children}</Layout>
+            </ThemeProvider>
+          </MobileVersionProvider>
+        </StoreProvider>
       </body>
     </html>
   );

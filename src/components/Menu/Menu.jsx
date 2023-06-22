@@ -1,8 +1,8 @@
-import { Dish } from "@/components/Dish/Dish";
 import React from "react";
 
 import styles from "./styles.module.scss";
 import classNames from "classnames";
+import { DishContainer } from "@/containers/DishContainer";
 
 /* eslint-disable react/jsx-key */
 export const Menu = ({ menu, className }) => {
@@ -15,7 +15,7 @@ export const Menu = ({ menu, className }) => {
       <h3>Menu</h3>
       <div className={styles.dishList}>
         {menu.map((dish) => (
-          <Dish dish={dish} className={styles.dish} />
+          <DishContainer dish={dish} className={styles.dish} />
         ))}
       </div>
     </div>

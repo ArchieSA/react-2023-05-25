@@ -17,6 +17,7 @@ export const Restaurants = ({ restaurantIds }) => {
         {restaurantIds.map((id) => (
           <RestaurantTabContainer
             restaurantId={id}
+            key={id}
             onClick={() => setActiveRestaurantId(id)}
           />
         ))}

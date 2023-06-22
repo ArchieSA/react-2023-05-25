@@ -1,5 +1,5 @@
-import { normalizedRestaurants } from "@/mocks/normalized-fixtures";
-import { createSlice } from "@reduxjs/toolkit";
+import { normalizedRestaurants } from '@/mocks/normalized-fixtures';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   entities: normalizedRestaurants.reduce((acc, restaurant) => {
@@ -11,7 +11,7 @@ const initialState = {
 };
 
 const restaurantSlice = createSlice({
-  name: "restaurant",
+  name: 'restaurant',
   initialState,
 });
 

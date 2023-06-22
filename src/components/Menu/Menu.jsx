@@ -10,12 +10,13 @@ export const Menu = ({ menu, className }) => {
     return <span>Empty Menu</span>;
   }
 
+
   return (
     <div className={classNames(styles.root, className)}>
       <h3>Menu</h3>
       <div className={styles.dishList}>
         {menu.map((dish) => (
-          <DishContainer dish={dish} className={styles.dish} />
+          <DishContainer dishId={dish} className={styles.dish} />
         ))}
       </div>
     </div>

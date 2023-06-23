@@ -3,12 +3,8 @@ import React from "react";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
 
-export const Review = ({ review, className }) => {
-  if (!review) {
-    return null;
-  }
+export const Review = ({ user, rating, text, className }) => {
 
-  const { text, user, rating } = review;
   return (
     <div className={classNames(styles.root, className)}>
       <div className={styles.header}>

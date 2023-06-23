@@ -1,9 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { normalizedDishes } from '@/mocks/normalized-fixtures';
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {};
+const initialState = { entities: {} };
 
-const cartSlice = createSlice({
-  name: "cart",
+const dishSlice = createSlice({
+  name: 'dish',
   initialState,
   reducers: {
     increment: (state, { payload }) => {
@@ -26,8 +27,16 @@ const cartSlice = createSlice({
       state[payload] = currentValue - 1;
     },
     reset: () => initialState,
+
+    setDishes: (state, { payload }) => {
+      normalizedDishes.forEach((dish) => {
+        if (dish.id === payload) {
+          state.entities[payload] = dish;
+        }
+      });
+    },
   },
 });
 
-export const cartReducer = cartSlice.reducer;
-export const cartActions = cartSlice.actions;
+export const dishReducer = dishSlice.reducer;
+export const dishActions = dishSlice.actions;

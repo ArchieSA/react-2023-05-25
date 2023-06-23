@@ -1,15 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+// { dish_id: order_count }
+const INITIAL_STATE = {};
 
-const cartSlice = createSlice({
+const { reducer: cartReducer, actions: cartActions } = createSlice({
   name: "cart",
-  initialState,
+  initialState: INITIAL_STATE,
+
   reducers: {
     increment: (state, { payload }) => {
-      const currentValue = state[payload] || 0;
-      state[payload] = currentValue + 1;
+      state[payload] ? state[payload]++ : state[payload] = 1
     },
+
     decrement: (state, { payload }) => {
       const currentValue = state[payload];
 
@@ -23,11 +25,11 @@ const cartSlice = createSlice({
         return;
       }
 
-      state[payload] = currentValue - 1;
+      state[payload]--;
     },
-    reset: () => initialState,
+
+    reset: () => INITIAL_STATE,
   },
 });
 
-export const cartReducer = cartSlice.reducer;
-export const cartActions = cartSlice.actions;
+export { cartReducer, cartActions }

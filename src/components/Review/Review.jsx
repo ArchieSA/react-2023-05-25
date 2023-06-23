@@ -8,11 +8,12 @@ export const Review = ({ review, className }) => {
     return null;
   }
 
-  const { text, user, rating } = review;
+  const { text, user: {name}, rating } = review;
+
   return (
     <div className={classNames(styles.root, className)}>
       <div className={styles.header}>
-        <div>{user}</div>
+        <div>{name}</div>
         <div>{rating}</div>
       </div>
       <p>{text}</p>

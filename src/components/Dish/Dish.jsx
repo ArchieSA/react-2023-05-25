@@ -9,7 +9,7 @@ import { useIsMobile } from "@/contexts/device";
 export const Dish = ({ dish, amount, increment, decrement, className }) => {
   const isMobile = useIsMobile();
 
-  const { name, price } = dish;
+  const { name, price, ingredients } = dish;
 
   return (
     <div className={classNames(styles.root, className)}>
@@ -35,6 +35,8 @@ export const Dish = ({ dish, amount, increment, decrement, className }) => {
       >
         +
       </Button>
+      {amount > 0 && <div className={styles.break} />}
+      {amount > 0 && <div className={styles.ingredients}>{ingredients.join(', ')}</div>}
     </div>
   );
 };

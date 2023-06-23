@@ -1,18 +1,14 @@
-import { normalizedRestaurants } from "@/mocks/normalized-fixtures";
 import { createSlice } from "@reduxjs/toolkit";
+import { normalizedRestaurants } from "@/mocks/normalized-fixtures";
+import { entityToSlice } from '../../utils'
 
-const initialState = {
-  entities: normalizedRestaurants.reduce((acc, restaurant) => {
-    acc[restaurant.id] = restaurant;
+// { entities: { id: restaurant }, ids: []}
+const INITIAL_STATE = entityToSlice(normalizedRestaurants);
 
-    return acc;
-  }, {}),
-  ids: normalizedRestaurants.map(({ id }) => id),
-};
-
-const restaurantSlice = createSlice({
+const { reducer: restaurantReducer, actions: restaurantActions } = createSlice({
   name: "restaurant",
-  initialState,
+  initialState: INITIAL_STATE,
 });
 
-export const restaurantReducer = restaurantSlice.reducer;
+export { restaurantReducer, restaurantActions }
+

@@ -1,16 +1,44 @@
+import React, { useEffect, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Menu } from "@/components/Menu/Menu";
-import { selectRestaurantDishIds } from "@/redux/features/restaurant/selectors";
-import React from "react";
-import { useSelector } from "react-redux";
+import { Splash } from "@/components/Splash/Splash";
+import { isLoading } from "@/redux/utils";
+import { selectRestaurant } from "@/redux/features/restaurant/selectors";
+import { selectStatus, selectError } from "@/redux/features/dish/selectors";
+import { fetchDishesByRestaurantIncremental } from "@/redux/features/dish/thunks/fetchDishesByRestaurantIncremental";
 
 export const MenuContainer = ({ restaurantId, className }) => {
-  const dishIds = useSelector((state) =>
-    selectRestaurantDishIds(state, restaurantId)
+  const restaurant = useSelector((state) => selectRestaurant(state, restaurantId));
+  const status = useSelector((state) => selectStatus(state));
+  const error = useSelector((state) => selectError(state));
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    restaurant && dispatch(
+      fetchDishesByRestaurantIncremental({
+        restaurantId,
+        testDishId: restaurant?.menu?.[0],
+      })
+    );
+  }, [restaurant?.menu, restaurantId]);
+
+  const renderSplash = useCallback(
+    (children) => (
+      <Splash
+        isLoading={isLoading(status)}
+        error={error}
+        operationTitle={`Загрузка ресторана ${restaurant?.name}`}
+        showTitle
+      >
+        {children}
+      </Splash>
+    ),
+    [error, restaurant?.name, status]
   );
 
-  if (!dishIds?.length) {
+  if (!restaurant || !restaurant.menu?.length) {
     return null;
   }
 
-  return <Menu dishIds={dishIds} className={className} />;
+  return <Menu dishIds={restaurant.menu} className={className} renderSplash={renderSplash} />;
 };

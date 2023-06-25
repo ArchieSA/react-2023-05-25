@@ -1,6 +1,8 @@
 .root {
+  position: relative;
   display: flex;
   flex-direction: column;
+  padding: 10px;
 }
 
 .searchFiled {
@@ -10,7 +12,19 @@
 }
 
 .filters {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  position: relative;
   margin-bottom: 20px;
+  > button {
+    filter: brightness(0.85)
+  }
+ 
+  > :global(button.active) {
+    font-weight: bold;
+    filter: none;
+  }
 }
 
 .tab:not(:last-child) {

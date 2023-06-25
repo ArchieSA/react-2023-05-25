@@ -1,0 +1,32 @@
+.splashContainer {
+  /* full size */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+
+  /* center */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgb(190 190 190 / 80%);
+  opacity: 0.80;
+
+  img {
+    animation: spin 4s linear infinite;
+  }
+}
+
+.shadedBg {
+  background-color: rgb(138 138 150 / 20%);
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

@@ -1,9 +1,11 @@
-import { Button } from "@/components/Button/Button";
 import React from "react";
+import cn from 'classnames'
+import { Button } from "@/components/Button/Button";
 
-export const Tab = ({ title, onClick, className }) => {
+
+export const Tab = ({ title, onClick, className, active }) => {
   return (
-    <Button onClick={onClick} className={className}>
+    <Button onClick={onClick} className={cn(className, {['active']: active})}>
       {title}
     </Button>
   );

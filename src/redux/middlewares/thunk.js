@@ -5,7 +5,3 @@ export const customThunk = (store) => (next) => (action) => {
 
   action(store.getState.bind(store), store.dispatch.bind(store));
 };
-
-// function fetchRestaurants(getState, dispatch) {
-
-// }

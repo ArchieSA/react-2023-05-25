@@ -4,15 +4,14 @@ import styles from "./styles.module.scss";
 import classNames from "classnames";
 import { DishContainer } from "@/containers/DishContainer";
 
-/* eslint-disable react/jsx-key */
-export const Menu = ({ dishIds, className }) => {
+export const Menu = ({ dishIds, className, renderSplash }) => {
   return (
     <div className={classNames(styles.root, className)}>
       <h3>Menu</h3>
       <div className={styles.dishList}>
-        {dishIds.map((dishId) => (
-          <DishContainer dishId={dishId} className={styles.dish} />
-        ))}
+        {renderSplash(dishIds.map((dishId) => (
+          <DishContainer key={dishId} dishId={dishId} className={styles.dish} />
+        )))}
       </div>
     </div>
   );

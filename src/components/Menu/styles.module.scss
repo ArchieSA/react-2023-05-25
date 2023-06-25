@@ -5,6 +5,10 @@
 
 .dishList {
   margin-top: 20px;
+  
+  position: relative;
+  min-width: 100px;
+  min-height: 100px
 }
 
 .dish:not(:last-child) {

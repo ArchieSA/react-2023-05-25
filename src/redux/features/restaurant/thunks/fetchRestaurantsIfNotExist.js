@@ -1,19 +1,19 @@
-import { STATUSES } from "@/constants/statuses";
-import { selectRestaurantIds } from "@/redux/features/restaurant/selectors";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { STATUSES } from "@/redux/const";
+import { selectRestaurantIds } from "../selectors";
+import { safeGet } from "../../../utils"
+import { MODULE_NAME } from '../const'
 
 export const fetchRestaurantsIfNotExist = createAsyncThunk(
-  "restaurant/fetchRestaurantsIfNotExist",
+  `${MODULE_NAME}/fetchRestaurantsIfNotExist`,
+
   async (_, { rejectWithValue, getState }) => {
     const state = getState();
 
     if (selectRestaurantIds(state)?.length) {
-      return rejectWithValue(STATUSES.alreadyLoaded);
+      return rejectWithValue({ status: STATUSES.alreadyLoaded });
     }
 
-    const response = await fetch("http://localhost:3001/api/restaurants/");
-    const restaurants = await response.json();
-
-    return restaurants;
+    return safeGet("http://localhost:3001/api/restaurants/")
   }
 );

@@ -1,18 +1,24 @@
-import { normalizedReviews } from "@/mocks/normalized-fixtures";
-import { createSlice } from "@reduxjs/toolkit";
+import { STATUSES } from "@/constants/statuses";
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { fetchReview } from "./thunk/fetchReview";
 
-const initialState = {
-  entities: normalizedReviews.reduce((acc, review) => {
-    acc[review.id] = review;
+export const ReviewEntityAdapter = createEntityAdapter()
 
-    return acc;
-  }, {}),
-  ids: normalizedReviews.map(({ id }) => id),
-};
 
 const reviewSlice = createSlice({
   name: "review",
-  initialState,
+  initialState: ReviewEntityAdapter.getInitialState({
+    status:STATUSES.idle
+  }),
+  extraReducers: (builder) => {
+    builder.addCase(fetchReview.pending, (state) => {
+      state.status = STATUSES.pending
+    });
+    builder.addCase(fetchReview.fulfilled, (state, {payload}) => {
+      ReviewEntityAdapter.addMany(state, payload)
+      state.status = STATUSES.finished
+    })
+  }
 });
 
 export const reviewReducer = reviewSlice.reducer;

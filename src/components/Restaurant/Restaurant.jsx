@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-key */
-import { Menu } from "@/components/Menu/Menu";
-import { Reviews } from "@/components/Reviews/Reviews";
 import React from "react";
 
 import styles from "./styles.module.scss";

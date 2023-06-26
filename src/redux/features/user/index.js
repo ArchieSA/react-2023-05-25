@@ -1,18 +1,35 @@
-import { normalizedUsers } from "@/mocks/normalized-fixtures";
-import { createSlice } from "@reduxjs/toolkit";
+import { STATUSES } from "@/constants/statuses";
+import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import { fetchUsers } from "./thunks/fetchUsers";
 
-const initialState = {
-  entities: normalizedUsers.reduce((acc, user) => {
-    acc[user.id] = user;
-
-    return acc;
-  }, {}),
-  ids: normalizedUsers.map(({ id }) => id),
-};
+export const usersEntityAdapter = createEntityAdapter();
 
 const userSlice = createSlice({
   name: "user",
-  initialState,
+  initialState: usersEntityAdapter.getInitialState({
+    statuses: STATUSES.idle,
+  }),
+
+  extraReducers: (builder) => {
+    builder.addCase(fetchUsers.pending, (state) => {
+      state.statuses = STATUSES.pending
+    });
+
+    builder.addCase(fetchUsers.fulfilled, (state, { payload }) => {
+      usersEntityAdapter.addMany(state, payload);
+
+      state.statuses = STATUSES.finished;
+    });
+
+    builder.addCase(fetchUsers.rejected, (state, { payload }) => {
+      state.statuses = payload === STATUSES.alreadyLoaded 
+        ? STATUSES.finished 
+        : STATUSES.failed;
+    })
+  }
 });
+
+
+export const { selectById, selectIds } = usersEntityAdapter.getSelectors();
 
 export const userReducer = userSlice.reducer;

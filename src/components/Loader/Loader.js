@@ -1,3 +1,3 @@
 import React from "react";
 
-export const Loader = () => <span>...loaded</span>
+export const Loader = () => <div>...loaded</div>

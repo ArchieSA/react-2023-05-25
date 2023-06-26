@@ -16,10 +16,7 @@ const dishSlice = createSlice({
     });
 
     builder.addCase(fetchDishById.fulfilled, (state, { payload }) => {
-      const prevEntities = Object.values(state.entities)
-
-      console.log(prevEntities)
-      dishEntityAdapter.setMany(state, prevEntities.concat(payload));
+      dishEntityAdapter.addMany(state, payload);
       state.statuses = STATUSES.fulfilled;
     });
 

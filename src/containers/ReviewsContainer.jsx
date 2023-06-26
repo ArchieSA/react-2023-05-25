@@ -1,12 +1,12 @@
 import React from "react";
 
 import { Reviews } from "@/components/Reviews/Reviews";
-import { WithLoaderComponent } from "@/hocs/WithLoaderComponent";
+import { withLoaderComponent } from "@/hocs/WithLoaderComponent";
 import { selectRestaurantReviewIds } from "@/redux/features/restaurant/selectors";
 import { selectReviewIsLoading } from '@/redux/features/review/selectors'
 import { useSelector } from "react-redux";
 
-const ReviewsWithLoader = WithLoaderComponent(Reviews);
+const ReviewsWithLoader = withLoaderComponent(Reviews);
 
 export const ReviewsContainer = ({ restaurantId, className }) => {
   const reviewIds = useSelector((state) =>

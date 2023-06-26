@@ -5,9 +5,9 @@ import { selectRestaurantIds, selectRestaurantLoader } from "@/redux/features/re
 import { fetchRestaurantsIfNotExist } from "@/redux/features/restaurant/thunks/fetchRestaurantsIfNotExist";
 import { fetchUsers } from "@/redux/features/user/thunks/fetchUsers";
 import { useDispatch, useSelector } from "react-redux";
-import { WithLoaderComponent } from "@/hocs/WithLoaderComponent";
+import { withLoaderComponent } from "@/hocs/WithLoaderComponent";
 
-const WithLoaderRestaurants = WithLoaderComponent(Restaurants)
+const WithLoaderRestaurants = withLoaderComponent(Restaurants)
 
 export const RestaurantsContainer = () => {
   const restaurantIds = useSelector(selectRestaurantIds);

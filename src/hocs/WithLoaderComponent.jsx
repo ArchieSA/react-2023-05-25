@@ -1,16 +1,19 @@
+/* eslint-disable react/display-name */
 import { Empty } from "@/components/Empty/Empty";
 import { Loader } from "@/components/Loader/Loader";
 import React from "react";
 
-// eslint-disable-next-line react/display-name
-export const WithLoaderComponent = (WrappedComponent) => (props) => {
-  if(props.isPending) {
+
+export const withLoaderComponent = (WrappedComponent) => (props) => {
+  const { isEmpty, isPending, ...rest } = props;
+  
+  if(isPending) {
     return <Loader />
   }
 
-  if(!props) {
+  if(isEmpty) {
     return <Empty />;
   }
 
-  return <WrappedComponent {...props} />
+  return <WrappedComponent {...rest} />
 }

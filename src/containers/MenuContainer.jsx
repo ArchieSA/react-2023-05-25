@@ -1,12 +1,12 @@
 import React from "react";
 
 import { Menu } from "@/components/Menu/Menu";
-import { WithLoaderComponent } from "@/hocs/WithLoaderComponent";
+import { withLoaderComponent } from "@/hocs/WithLoaderComponent";
 import { selectDishLoaded } from "@/redux/features/dish/selectors";
 import { selectRestaurantDishIds } from "@/redux/features/restaurant/selectors";
 import { useSelector } from "react-redux";
 
-const MenuWithLoader = WithLoaderComponent(Menu);
+const MenuWithLoader = withLoaderComponent(Menu);
 
 export const MenuContainer = ({ restaurantId, className }) => {
   const dishIds = useSelector((state) =>

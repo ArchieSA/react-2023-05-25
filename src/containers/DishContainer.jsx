@@ -1,5 +1,4 @@
 import { Dish } from "@/components/Dish/Dish";
-import { WithLoaderComponent } from "@/hocs/WithLoaderComponent";
 import { cartActions } from "@/redux/features/cart";
 import { selectDishAmount } from "@/redux/features/cart/selectors";
 import { selectDish, selectDishLoaded } from "@/redux/features/dish/selectors";

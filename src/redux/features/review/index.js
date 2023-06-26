@@ -16,7 +16,7 @@ const reviewSlice = createSlice({
     });
 
     builder.addCase(fetchReviewsById.fulfilled, (state, { payload }) => {
-      reviewEntityAdapter.setMany(state, payload);
+      reviewEntityAdapter.addMany(state, payload);
       state.statuses = STATUSES.fulfilled;
     });
 

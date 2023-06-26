@@ -5,13 +5,13 @@ import classNames from "classnames";
 import { DishContainer } from "@/containers/DishContainer";
 
 /* eslint-disable react/jsx-key */
-export const Menu = ({ dishIds, className }) => {
+export const Menu = ({ dishIds, className, status }) => {
   return (
     <div className={classNames(styles.root, className)}>
       <h3>Menu</h3>
       <div className={styles.dishList}>
         {dishIds.map((dishId) => (
-          <DishContainer dishId={dishId} className={styles.dish} />
+          !status || status === "finished" ? <DishContainer dishId={dishId} className={styles.dish} /> : <p>Loading...</p>
         ))}
       </div>
     </div>

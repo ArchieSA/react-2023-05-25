@@ -1,12 +1,12 @@
-const router = require("express").Router();
-const { restaurants, products, reviews, users } = require("./mock");
-const { reply, getById } = require("./utils");
+const router = require('express').Router();
+const { restaurants, products, reviews, users } = require('./mock');
+const { reply, getById } = require('./utils');
 
-router.get("/restaurants", (req, res, next) => {
+router.get('/restaurants', (req, res, next) => {
   reply(res, restaurants);
 });
 
-router.get("/dishes", (req, res, next) => {
+router.get('/dishes', (req, res, next) => {
   const { restaurantId, productId } = req.query;
   let result = products;
 
@@ -23,7 +23,7 @@ router.get("/dishes", (req, res, next) => {
   reply(res, result);
 });
 
-router.get("/reviews", (req, res, next) => {
+router.get('/reviews', (req, res, next) => {
   const { restaurantId } = req.query;
   let result = reviews;
   if (restaurantId) {
@@ -35,7 +35,7 @@ router.get("/reviews", (req, res, next) => {
   reply(res, result);
 });
 
-router.get("/users", (req, res, next) => {
+router.get('/users', (req, res, next) => {
   reply(res, users);
 });
 

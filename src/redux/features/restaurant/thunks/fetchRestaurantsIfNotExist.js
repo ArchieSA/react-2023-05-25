@@ -1,9 +1,9 @@
-import { STATUSES } from "@/constants/statuses";
-import { selectRestaurantIds } from "@/redux/features/restaurant/selectors";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { STATUSES } from '@/constants/statuses';
+import { selectRestaurantIds } from '@/redux/features/restaurant/selectors';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchRestaurantsIfNotExist = createAsyncThunk(
-  "restaurant/fetchRestaurantsIfNotExist",
+  'restaurant/fetchRestaurantsIfNotExist',
   async (_, { rejectWithValue, getState }) => {
     const state = getState();
 
@@ -11,7 +11,7 @@ export const fetchRestaurantsIfNotExist = createAsyncThunk(
       return rejectWithValue(STATUSES.alreadyLoaded);
     }
 
-    const response = await fetch("http://localhost:3001/api/restaurants/");
+    const response = await fetch('http://localhost:3001/api/restaurants/');
     const restaurants = await response.json();
 
     return restaurants;

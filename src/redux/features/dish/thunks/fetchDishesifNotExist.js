@@ -6,7 +6,7 @@ import { selectRestaurantDishIds } from "../../restaurant/selectors";
 import { selectDish } from "../selectors";
 
 export const fetchDishesIfNotExist = createAsyncThunk(
-  "restaurant/fetchDishesIfNotExist",
+  "dish/fetchDishesIfNotExist",
   async (restaurantId, { rejectWithValue, getState }) => {
     const state = getState();
 

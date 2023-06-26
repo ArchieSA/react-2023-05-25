@@ -4,7 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { selectUserIds } from "../selectors";
 
 export const fetchUsersIfNotExist = createAsyncThunk(
-  "restaurant/fetchUsersIfNotExist",
+  "user/fetchUsersIfNotExist",
   async (_, { rejectWithValue, getState }) => {
     const state = getState();
 
@@ -13,8 +13,8 @@ export const fetchUsersIfNotExist = createAsyncThunk(
     }
 
     const response = await fetch("http://localhost:3001/api/users/");
-    const restaurants = await response.json();
+    const users = await response.json();
 
-    return restaurants;
+    return users;
   }
 );

@@ -19,7 +19,7 @@ export const RestaurantsContainer = () => {
       dispatch(fetchRestaurantsIfNotExist()),
       dispatch(fetchUsers()),
     ])
-  }, []);
+  }, [dispatch]);
 
   return (
     <WithLoaderRestaurants 

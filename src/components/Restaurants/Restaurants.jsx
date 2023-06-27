@@ -1,7 +1,4 @@
 "use client";
-
-import { Button } from "@/components/Button/Button";
-/* eslint-disable react/jsx-key */
 import React, { useState } from "react";
 
 import styles from "./styles.module.scss";
@@ -16,6 +13,7 @@ export const Restaurants = ({ restaurantIds }) => {
       <div className={styles.filters}>
         {restaurantIds.map((id) => (
           <RestaurantTabContainer
+            key={id}
             restaurantId={id}
             onClick={() => setActiveRestaurantId(id)}
           />

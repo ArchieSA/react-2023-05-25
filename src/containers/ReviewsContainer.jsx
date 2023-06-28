@@ -19,7 +19,8 @@ export const ReviewsContainer = ({ restaurantId, className }) => {
         restaurantId
       })
     );
-  }, [restaurant?.reviews, restaurantId]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [restaurant]);
 
   const renderSplash = useCallback(
     (children) => (

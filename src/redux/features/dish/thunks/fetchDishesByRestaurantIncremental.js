@@ -7,12 +7,13 @@ import { safeGet } from "../../../utils"
 export const fetchDishesByRestaurantIncremental = createAsyncThunk(
   `${MODULE_NAME}/fetchDishesByRestaurantIncremental`,
 
-  async ({ restaurantId, testDishId }, { rejectWithValue, getState }) => {
+  async ({ restaurantId, menu }, { rejectWithValue, getState }) => {
     const state = getState();    
 
-    const ids = selectDishIds(state)
+    const ids = new Set(selectDishIds(state))
+    
 
-    if (ids?.length && testDishId && ids.some(id => id === testDishId)) {
+    if (menu?.length && menu.every(id => ids.has(id))) {
       return rejectWithValue({ status: STATUSES.alreadyLoaded });
     }
 

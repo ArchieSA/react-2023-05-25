@@ -17,10 +17,11 @@ export const MenuContainer = ({ restaurantId, className }) => {
     restaurant && dispatch(
       fetchDishesByRestaurantIncremental({
         restaurantId,
-        testDishId: restaurant?.menu?.[0],
+        menu: restaurant?.menu,
       })
     );
-  }, [restaurant?.menu, restaurantId]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [restaurant]);
 
   const renderSplash = useCallback(
     (children) => (

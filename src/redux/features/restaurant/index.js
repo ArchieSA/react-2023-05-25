@@ -1,18 +1,36 @@
-import { normalizedRestaurants } from "@/mocks/normalized-fixtures";
-import { createSlice } from "@reduxjs/toolkit";
+import { STATUSES } from "@/constants/statuses";
+import { fetchRestaurantsIfNotExist } from "@/redux/features/restaurant/thunks/fetchRestaurantsIfNotExist";
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  entities: normalizedRestaurants.reduce((acc, restaurant) => {
-    acc[restaurant.id] = restaurant;
-
-    return acc;
-  }, {}),
-  ids: normalizedRestaurants.map(({ id }) => id),
-};
+export const restaurantEntityAdapter = createEntityAdapter();
 
 const restaurantSlice = createSlice({
   name: "restaurant",
-  initialState,
+  initialState: restaurantEntityAdapter.getInitialState({
+    status: STATUSES.idle,
+  }),
+  extraReducers: (builder) => {
+    builder.addCase(fetchRestaurantsIfNotExist.pending, (state) => {
+      state.status = STATUSES.pending;
+    });
+    builder.addCase(
+      fetchRestaurantsIfNotExist.fulfilled,
+      (state, { payload }) => {
+        restaurantEntityAdapter.setAll(state, payload);
+        state.status = STATUSES.finished;
+      }
+    );
+    builder.addCase(
+      fetchRestaurantsIfNotExist.rejected,
+      (state, { payload }) => {
+        state.status =
+          payload === STATUSES.alreadyLoaded
+            ? STATUSES.finished
+            : STATUSES.failed;
+      }
+    );
+  },
 });
 
+export const { selectById, selectIds } = restaurantEntityAdapter.getSelectors();
 export const restaurantReducer = restaurantSlice.reducer;

@@ -1,30 +1,23 @@
-import { Menu } from "@/components/Menu/Menu";
 import { MenuSkeleton } from "@/components/Menu/MenuSkeleton";
-import { STATUSES } from "@/constants/statuses";
-import { useRequest } from "@/hooks/useRequest";
-import { selectIsDishLoading } from "@/redux/features/dish/selectors";
-import { fetchDishByRestaurantIdIfNotExist } from "@/redux/features/dish/thunk/fetchDishByRestaurantIdIfNotExist";
-import { selectRestaurantDishIds } from "@/redux/features/restaurant/selectors";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useGetDishesQuery } from "@/redux/services/api";
+import { DishContainer } from "./DishContainer";
 
 export const MenuContainer = ({ restaurantId, className }) => {
-  const dishIds = useSelector((state) =>
-    selectRestaurantDishIds(state, restaurantId)
-  );
+  const { data, isFetching } = useGetDishesQuery(restaurantId)
 
-  const dishLoadingStatus = useRequest(
-    fetchDishByRestaurantIdIfNotExist,
-    restaurantId
-  );
-
-  if (dishLoadingStatus === STATUSES.pending) {
+  if (isFetching) {
     return <MenuSkeleton />;
   }
 
-  if (!dishIds?.length) {
+  if (!data?.length) {
     return null;
   }
 
-  return <Menu dishIds={dishIds} className={className} />;
+  return (
+    <div>
+      {data.map(dish => (
+        <DishContainer key={dish.id} dish={dish} />
+      ))}
+    </div>
+  )
 };

@@ -3,6 +3,14 @@
   flex-direction: column;
 }
 
+.createButton {
+  padding: 5px 10px;
+  margin: 10px 0;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: start;
+}
+
 .review {
   &:not(:last-child) {
     margin-bottom: 10px;

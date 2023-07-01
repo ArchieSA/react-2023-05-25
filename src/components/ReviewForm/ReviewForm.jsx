@@ -1,7 +1,6 @@
-/* eslint-disable react/jsx-key */
 import { Rating } from "@/components/Rating/Rating";
-import React, { useReducer, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useReducer } from "react";
+import styles from "./styles.module.scss";
 
 const initialState = {
   userId: "",
@@ -31,46 +30,40 @@ const reducer = (state, { type, payload } = {}) => {
   }
 };
 
-export const NewReviewForm = ({ users = [], saveReview }) => {
-  const [form, dispatch] = useReducer(reducer, initialState);
+export const ReviewForm = ({ users = [], review, saveReview }) => {
+  const [form, dispatch] = useReducer(reducer, review || initialState);
 
   return (
-    <div>
-      <button
-        onClick={() => {
-          if (form.userId && form.text && form.rating) {
-            saveReview(form);
-            dispatch({ type: "reset" });
-          }
-        }}
-      >
-        SaveReview
-      </button>
-      <div>
-        <label>Name</label>
+    <div className={styles.root}>
+      <h4 className={styles.title}>{review ? 'Edit review' : 'Create review'}</h4>
+      <div className={styles.field}>
+        <label className={styles.fieldLabel}>Name</label>
         <select
           value={form.userId}
           onChange={(event) => {
             dispatch({ type: "changeUser", payload: event.target.value });
           }}
+          disabled={review?.id}
         >
           <option>-</option>
           {users.map(({ name, id }) => (
-            <option value={id}>{name}</option>
+            <option key={id} value={id}>{name}</option>
           ))}
         </select>
       </div>
-      <div>
-        <label>Text</label>
-        <input
+      <div className={styles.field}>
+        <label className={styles.fieldLabel}>Text</label>
+        <textarea
+          className={styles.fieldValue}
+          rows="3"
           value={form.text}
           onChange={(event) =>
             dispatch({ type: "changeText", payload: event.target.value })
           }
         />
       </div>
-      <div>
-        <label>Rating</label>
+      <div className={styles.field}>
+        <label className={styles.fieldLabel}>Rating</label>
         <Rating
           value={form.rating}
           onChange={(value) =>
@@ -78,6 +71,19 @@ export const NewReviewForm = ({ users = [], saveReview }) => {
           }
         />
       </div>
+
+      <button
+        className={styles.saveButton}
+        onClick={() => {
+          if (form.userId && form.text && form.rating) {
+            saveReview(form);
+            dispatch({ type: "reset" });
+          }
+        }}
+        disabled={!(form.userId && form.text && form.rating)}
+      >
+        {review ? 'Update review' : 'Save review'}
+      </button>
     </div>
   );
 };

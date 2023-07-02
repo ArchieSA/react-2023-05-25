@@ -6,7 +6,6 @@ import React, { useState } from "react";
 
 import styles from "./styles.module.scss";
 import { RestaurantsTabContainer } from "@/containers/RestaurantsTabContainer";
-import { RestaurantContainer } from "@/containers/RestaurantContainer";
 import { Restaurant } from "@/components/Restaurant/Restaurant";
 
 export const Restaurants = () => {

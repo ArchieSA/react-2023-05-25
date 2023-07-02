@@ -1,7 +1,8 @@
 import { STATUSES } from "@/constants/statuses";
-import { createNewReview } from "@/redux/features/review/thunks/createNewReview";
-import { fetchReviewsByRestaurantIdIfNotExist } from "@/redux/features/review/thunks/fetchReviewsByRestaurantIdIfNotExist";
+
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { createNewReview } from "./thunks/createNewReview";
+import { fetchReviewsByRestaurantIdIfNotExist } from "./thunks/fetchReviewsByRestaurantIdIfNotExist";
 
 const reviewEntityAdapter = createEntityAdapter();
 

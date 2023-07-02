@@ -5,6 +5,7 @@ export const api = createApi({
   tagTypes: ["Restaurant", "Dish", "Review", "User"],
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001/api/" }),
   endpoints: (builder) => ({
+
     getRestaurants: builder.query({
       query: () => ({
         url: "restaurants",
@@ -12,6 +13,20 @@ export const api = createApi({
       providesTags: (result) =>
         (result || []).map(({ id }) => ({ type: "Restaurant", id })),
     }),
+
+    getDishes: builder.query({
+      query: (restaurantId) => ({
+        url: "dishes",
+        params: {
+          restaurantId,
+        },
+      }),
+      providesTags: (result) =>
+        (result || [])
+          .map(({ id }) => ({ type: "Dish", id }))
+          .concat({ type: "Dish", id: "LIST" }),
+    }),
+
     getReviews: builder.query({
       query: (restaurantId) => ({
         url: "reviews",
@@ -24,6 +39,17 @@ export const api = createApi({
           .map(({ id }) => ({ type: "Review", id }))
           .concat({ type: "Review", id: "LIST" }),
     }),
+
+    getUsers: builder.query({
+      query: () => ({
+        url: "users",
+      }),
+      providesTags: (result) =>
+        (result || [])
+          .map(({ id }) => ({ type: "User", id }))
+          .concat({ type: "User", id: "LIST" }),
+    }),
+
     updateReview: builder.mutation({
       query: ({ reviewId, newReview }) => ({
         url: `review/${reviewId}`,
@@ -32,6 +58,7 @@ export const api = createApi({
       }),
       invalidatesTags: (result) => [{ type: "Review", id: result.id }],
     }),
+
     createReview: builder.mutation({
       query: ({ restaurantId, newReview }) => ({
         url: `review/${restaurantId}`,
@@ -45,6 +72,9 @@ export const api = createApi({
 
 export const {
   useGetRestaurantsQuery,
+  useGetDishesQuery,
   useGetReviewsQuery,
+  useGetUsersQuery,
   useCreateReviewMutation,
+  useUpdateReviewMutation,
 } = api;

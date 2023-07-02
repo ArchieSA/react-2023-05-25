@@ -1,30 +1,36 @@
 import { NewReviewForm } from "@/components/NewReviewForm/NewReviewForm";
-import { STATUSES } from "@/constants/statuses";
-import { useTriggerRequest } from "@/hooks/useTriggerRequest";
-import { createNewReview } from "@/redux/features/review/thunks/createNewReview";
-import { selectUsers } from "@/redux/features/user/selectors";
-import { useCreateReviewMutation } from "@/redux/services/api";
+import { useCreateReviewMutation, useUpdateReviewMutation } from "@/redux/services/api";
 import React from "react";
-import { useSelector } from "react-redux";
 
-export const NewReviewFormContainer = ({ restaurantId }) => {
-  const users = useSelector(selectUsers);
-  const [createReview, { isLoading }] = useCreateReviewMutation();
+export const NewReviewFormContainer = ({ restaurantId, users, review, switchFormReview }) => {
+  // компонент "понимает" для чего он если в него передается ревью. если есть то изменяет, если нет то создает
+  const [createReview, { isLoading: isLoadingCreate }] = useCreateReviewMutation();
+  const [updateReview, { isLoading: isLoadingUpdate, isSuccess }] = useUpdateReviewMutation();
 
-  //   const [createReview, createReviewStatus] = useTriggerRequest(createNewReview);
-
-  if (isLoading) {
+  if (isLoadingCreate || isLoadingUpdate) {
     return <div>Saving...</div>;
+  }
+
+  if (isSuccess) { //после успешного запроса заменит форму на комент
+    switchFormReview(true)
   }
 
   return (
     <NewReviewForm
+      review={review}
       users={users}
       saveReview={(newReview) =>
         createReview({
           restaurantId,
           newReview,
         })
+      }
+      updatReview={(newReview) => {
+        updateReview({
+          reviewId: review.id,
+          newReview,
+        });
+      }
       }
     />
   );

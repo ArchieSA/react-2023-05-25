@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-key */
 import { Rating } from "@/components/Rating/Rating";
-import React, { useReducer, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useReducer, useRef, useState } from "react";
+import { Button } from "../Button/Button";
+import styles from "./styles.module.scss";
 
 const initialState = {
   userId: "",
@@ -23,6 +24,9 @@ const reducer = (state, { type, payload } = {}) => {
         return { ...state, rating: payload };
       }
     }
+    case "initalUpdate": {
+      return { userId: payload?.userId, text: payload?.text, rating: payload?.rating};
+    }
     case "reset": {
       return initialState;
     }
@@ -31,21 +35,16 @@ const reducer = (state, { type, payload } = {}) => {
   }
 };
 
-export const NewReviewForm = ({ users = [], saveReview }) => {
+export const NewReviewForm = ({ users, saveReview, updatReview, review }) => {
   const [form, dispatch] = useReducer(reducer, initialState);
 
+  const refReview = useRef(review) //чтобы все работало в режиме изминения
+  useEffect(() => {
+    review && dispatch({type: "initalUpdate", payload: refReview.current})
+  }, [refReview])
+
   return (
-    <div>
-      <button
-        onClick={() => {
-          if (form.userId && form.text && form.rating) {
-            saveReview(form);
-            dispatch({ type: "reset" });
-          }
-        }}
-      >
-        SaveReview
-      </button>
+    <div className={styles.root}>
       <div>
         <label>Name</label>
         <select
@@ -55,7 +54,7 @@ export const NewReviewForm = ({ users = [], saveReview }) => {
           }}
         >
           <option>-</option>
-          {users.map(({ name, id }) => (
+          {users?.map(({ name, id }) => (
             <option value={id}>{name}</option>
           ))}
         </select>
@@ -77,6 +76,18 @@ export const NewReviewForm = ({ users = [], saveReview }) => {
             dispatch({ type: "changeRating", payload: value })
           }
         />
+      </div>
+      <div>
+        <Button
+          onClick={() => {
+            if (form.userId && form.text && form.rating) {
+              review ? updatReview(form) : saveReview(form); //выбор метода согласно ревью
+              dispatch({ type: "reset" });
+            }
+          }}
+        >
+          SaveReview
+        </Button>
       </div>
     </div>
   );

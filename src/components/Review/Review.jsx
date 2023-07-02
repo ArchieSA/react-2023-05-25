@@ -8,6 +8,7 @@ export const Review = ({ review, className }) => {
   if (!review) {
     return null;
   }
+  console.log('REVIEW', review);
 
   const { text, userId, rating } = review;
   return (

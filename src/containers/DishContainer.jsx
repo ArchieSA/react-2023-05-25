@@ -5,8 +5,8 @@ import { selectDish } from "@/redux/features/dish/selectors";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-export const DishContainer = ({ dishId, ...props }) => {
-  const dish = useSelector((state) => selectDish(state, dishId));
+export const DishContainer = ({ dish, ...props }) => {
+  const dishId = dish.id;
   const amount = useSelector((state) => selectDishAmount(state, dishId));
   const dispatch = useDispatch();
 

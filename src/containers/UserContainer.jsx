@@ -1,10 +1,17 @@
 import { User } from "@/components/User/User";
-import { selectUser } from "@/redux/features/user/selectors";
+import { useGetUsersQuery } from "@/redux/services/api";
 import React from "react";
-import { useSelector } from "react-redux";
 
 export const UserContainer = ({ userId, ...props }) => {
-  const user = useSelector((state) => selectUser(state, userId));
+
+  const {data: users, isLoading} = useGetUsersQuery();
+
+  if(isLoading)
+  {
+    return <div>User loading...</div>
+  }
+
+  const user = users.find((user) => user.id === userId);
 
   if (!user) {
     return null;

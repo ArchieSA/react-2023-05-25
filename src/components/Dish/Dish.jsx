@@ -5,9 +5,12 @@ import styles from "./styles.module.scss";
 import { Button } from "@/components/Button/Button";
 import classNames from "classnames";
 import { useIsMobile } from "@/contexts/device";
+import { useAmount } from "@/hooks/useAmount";
 
-export const Dish = ({ dish, amount, increment, decrement, className }) => {
+export const Dish = ({ dish, className }) => {
   const isMobile = useIsMobile();
+
+  const {amount, increment, decrement} = useAmount();
 
   const { name, price } = dish;
 

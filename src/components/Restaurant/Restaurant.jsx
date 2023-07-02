@@ -4,6 +4,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { ReviewsContainer } from "@/containers/ReviewsContainer";
 import { NewReviewFormContainer } from "@/containers/NewReviewFormContainer";
+import { MenuContainer } from "@/containers/MenuContainer";
 
 export const Restaurant = ({ restaurant }) => {
   const { name, id } = restaurant;
@@ -11,7 +12,7 @@ export const Restaurant = ({ restaurant }) => {
   return (
     <div>
       <h2>{name}</h2>
-      {/* <MenuContainer restaurantId={id} className={styles.menu} /> */}
+      <MenuContainer restaurantId={id} className={styles.menu} />
       <ReviewsContainer restaurantId={id} className={styles.reviews} />
       <NewReviewFormContainer restaurantId={id} />
     </div>

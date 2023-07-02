@@ -24,6 +24,23 @@ export const api = createApi({
           .map(({ id }) => ({ type: "Review", id }))
           .concat({ type: "Review", id: "LIST" }),
     }),
+    getMenu: builder.query({
+      query: (restaurantId) => ({
+        url: "dishes",
+        params: {
+          restaurantId
+        }
+      }),
+      providesTags: (result) =>
+        (result || []).map(({ id }) => ({ type: "Dish", id })),
+    }),
+    getUsers: builder.query({
+      query: () => ({
+        url: "users"
+      }),
+      providesTags: (result) =>
+        (result || []).map(({ id }) => ({ type: "User", id })),
+    }),
     updateReview: builder.mutation({
       query: ({ reviewId, newReview }) => ({
         url: `review/${reviewId}`,
@@ -46,5 +63,7 @@ export const api = createApi({
 export const {
   useGetRestaurantsQuery,
   useGetReviewsQuery,
+  useGetMenuQuery,
   useCreateReviewMutation,
+  useGetUsersQuery,
 } = api;

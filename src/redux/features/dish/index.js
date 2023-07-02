@@ -1,6 +1,6 @@
 import { STATUSES } from "@/constants/statuses";
-import { fetchDishByRestaurantIdIfNotExist } from "@/redux/features/dish/thunk/fetchDishByRestaurantIdIfNotExist";
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { fetchDishByRestaurantIdIfNotExist } from "./thunk/fetchDishByRestaurantIdIfNotExist";
 
 const dishEntityAdapter = createEntityAdapter();
 

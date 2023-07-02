@@ -12,3 +12,19 @@
 .reviews {
   margin-top: 20px;
 }
+
+.skeleton {
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    margin-top: 20px;
+    height: 23px;
+    width: 100px;
+  }
+
+  .element {
+    margin-top: 20px;
+    height: 47px;
+  }
+}

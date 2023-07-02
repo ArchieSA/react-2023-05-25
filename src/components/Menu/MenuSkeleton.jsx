@@ -1,6 +1,5 @@
-import { Skeleton } from "@/components/Skeleton/Skeleton";
 import React from "react";
-
+import { Skeleton } from "@/components/Skeleton/Skeleton";
 import styles from "./styles.module.scss";
 
 export const MenuSkeleton = () => {

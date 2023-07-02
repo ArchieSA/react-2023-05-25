@@ -3,13 +3,12 @@
 import React, {
   useCallback,
   useContext,
-  useLayoutEffect,
   useState,
 } from "react";
 
-const defaultValue = false;
+const DEFAULT_VALUE = false;
 
-const context = React.createContext(defaultValue);
+const context = React.createContext(DEFAULT_VALUE);
 const setterContext = React.createContext(() => {});
 
 export const useIsMobile = () => {
@@ -21,7 +20,7 @@ export const useMobileVersionSwitcher = () => {
 };
 
 export const MobileVersionProvider = ({ children }) => {
-  const [isMobile, setIsMobile] = useState(defaultValue);
+  const [isMobile, setIsMobile] = useState(DEFAULT_VALUE);
 
   const switchVersion = useCallback(() => {
     setIsMobile((isMobile) => {

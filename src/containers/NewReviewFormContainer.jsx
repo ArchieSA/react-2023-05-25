@@ -1,10 +1,11 @@
 import React from "react";
 import { NewReviewForm } from "@/components/NewReviewForm/NewReviewForm";
 import { useCreateReviewMutation } from "@/redux/services/api";
-import { useUsers } from "@/contexts/users"
+import { useGetUsersQuery } from "@/redux/services/api";
+
 
 export const NewReviewFormContainer = ({ restaurantId }) => {
-  const users = useUsers();
+  const { data: users } = useGetUsersQuery()
   const [createReview, { isLoading }] = useCreateReviewMutation();
 
   if (isLoading) {

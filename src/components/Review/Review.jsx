@@ -1,12 +1,14 @@
 import React from "react";
 import classNames from "classnames";
-import { useUser } from "@/contexts/users"
 import { User } from '@/components/User/User'
+import { useGetUsersQuery } from "@/redux/services/api";
 import styles from "./styles.module.scss";
 
 export const Review = ({ review, className }) => {
   const { text, rating, userId } = review || {};
-  const user = useUser(review?.userId)
+  const user = useGetUsersQuery(undefined, {
+    selectFromResult: ({ data }) => data?.find( ({ id }) => id === userId )
+  })
 
   if (!review) {
     return null;

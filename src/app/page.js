@@ -3,8 +3,8 @@
 "use client";
 
 import React from "react";
-import { RestaurantsContainer } from "@/containers/RestaurantsContainer";
+import { Restaurants } from "@/components/Restaurants/Restaurants";
 
 export default function Home() {
-  return <RestaurantsContainer />;
+  return <Restaurants />;
 }

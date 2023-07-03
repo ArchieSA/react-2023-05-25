@@ -1,4 +1,5 @@
 import { STATUSES } from "@/constants/statuses";
+import { createNewReview } from "@/redux/features/review/thunks/createNewReview";
 import { fetchReviewsByRestaurantIdIfNotExist } from "@/redux/features/review/thunks/fetchReviewsByRestaurantIdIfNotExist";
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 
@@ -22,6 +23,9 @@ export const reviewSlice = createSlice({
         payload === STATUSES.alreadyLoaded
           ? STATUSES.finished
           : STATUSES.failed;
+    },
+    [createNewReview.fulfilled]: (state, { payload }) => {
+      reviewEntityAdapter.addOne(state, payload.review);
     },
   },
 });

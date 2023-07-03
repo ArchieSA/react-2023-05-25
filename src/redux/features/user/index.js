@@ -26,4 +26,5 @@ export const userSlice = createSlice({
   },
 });
 
+export const userSelectors = userEntityAdapter.getSelectors();
 export const userReducer = userSlice.reducer;

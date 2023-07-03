@@ -1,4 +1,6 @@
 import { Reviews } from "@/components/Reviews/Reviews";
+import { STATUSES } from "@/constants/statuses";
+import { useRequest } from "@/hooks/useRequest";
 import { selectRestaurantReviewIds } from "@/redux/features/restaurant/selectors";
 import { selectIsReviewLoading } from "@/redux/features/review/selectors";
 import { fetchReviewsByRestaurantIdIfNotExist } from "@/redux/features/review/thunks/fetchReviewsByRestaurantIdIfNotExist";
@@ -11,19 +13,14 @@ export const ReviewsContainer = ({ restaurantId, className }) => {
   const reviewIds = useSelector((state) =>
     selectRestaurantReviewIds(state, restaurantId)
   );
-  const isReviewsLoading = useSelector(selectIsReviewLoading);
-  const isUsersLoading = useSelector(selectIsUsersLoading);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchReviewsByRestaurantIdIfNotExist(restaurantId));
-  }, [restaurantId]);
+  const reviewLoadingStatus = useRequest(
+    fetchReviewsByRestaurantIdIfNotExist,
+    restaurantId
+  );
+  const userLoadingStatus = useRequest(fetchUsersIfNotExist);
 
-  useEffect(() => {
-    dispatch(fetchUsersIfNotExist());
-  }, []);
-
-  if (isReviewsLoading || isUsersLoading) {
+  if ([reviewLoadingStatus, userLoadingStatus].includes(STATUSES.pending)) {
     return <div>Loading...</div>;
   }
 

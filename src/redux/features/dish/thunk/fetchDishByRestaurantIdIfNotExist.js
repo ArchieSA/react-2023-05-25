@@ -5,22 +5,23 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchDishByRestaurantIdIfNotExist = createAsyncThunk(
   "dish/fetchDishByRestaurantIdIfNotExist",
-  async (restaurantId, { getState, rejectWithValue }) => {
-    const state = getState();
-    const restaurantMenu = selectRestaurantDishIds(state, restaurantId);
-    const dishIds = selectDishIds(state);
-
-    if (
-      !restaurantMenu ||
-      restaurantMenu.every((dishId) => dishIds.includes(dishId))
-    ) {
-      return rejectWithValue(STATUSES.alreadyLoaded);
-    }
-
+  async (restaurantId) => {
     const response = await fetch(
       `http://localhost:3001/api/dishes?restaurantId=${restaurantId}`
     );
 
     return await response.json();
+  },
+  {
+    condition: (restaurantId, { getState }) => {
+      const state = getState();
+      const restaurantMenu = selectRestaurantDishIds(state, restaurantId);
+      const dishIds = selectDishIds(state);
+
+      return (
+        restaurantMenu &&
+        restaurantMenu.some((dishId) => !dishIds.includes(dishId))
+      );
+    },
   }
 );

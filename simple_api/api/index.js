@@ -1,6 +1,7 @@
 const router = require("express").Router();
+const { nanoid } = require("nanoid");
 const { restaurants, products, reviews, users } = require("./mock");
-const { reply, getById } = require("./utils");
+const { reply, getById, updateById } = require("./utils");
 
 router.get("/restaurants", (req, res, next) => {
   reply(res, restaurants);
@@ -33,6 +34,38 @@ router.get("/reviews", (req, res, next) => {
     }
   }
   reply(res, result);
+});
+
+router.post("/review/:restaurantId", (req, res, next) => {
+  const body = req.body;
+  const restaurantId = req.params?.restaurantId;
+  const restaurant = restaurantId && getById(restaurants)(restaurantId);
+  let newReview = {};
+
+  if (restaurant && body) {
+    const newReviewId = nanoid();
+
+    newReview = {
+      ...body,
+      id: newReviewId,
+    };
+    restaurant.reviews.push(newReviewId);
+    reviews.push(newReview);
+  }
+
+  reply(res, newReview);
+});
+
+router.patch("/review/:reviewId", (req, res, next) => {
+  const body = req.body;
+  const reviewId = req.params?.reviewId;
+  let updatedReview;
+
+  if (reviewId) {
+    updatedReview = updateById(reviews)(reviewId, body);
+  }
+
+  reply(res, updatedReview);
 });
 
 router.get("/users", (req, res, next) => {

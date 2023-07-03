@@ -5,23 +5,21 @@ import { Button } from "@/components/Button/Button";
 import React, { useState } from "react";
 
 import styles from "./styles.module.scss";
-import { RestaurantTabContainer } from "@/containers/RestaurantTabContainer";
+import { RestaurantsTabContainer } from "@/containers/RestaurantsTabContainer";
 import { RestaurantContainer } from "@/containers/RestaurantContainer";
+import { Restaurant } from "@/components/Restaurant/Restaurant";
 
-export const Restaurants = ({ restaurantIds }) => {
-  let [activeRestaurantId, setActiveRestaurantId] = useState(restaurantIds[0]);
+export const Restaurants = () => {
+  let [activeRestaurant, setActiveRestaurant] = useState();
 
   return (
     <div className={styles.root}>
       <div className={styles.filters}>
-        {restaurantIds.map((id) => (
-          <RestaurantTabContainer
-            restaurantId={id}
-            onClick={() => setActiveRestaurantId(id)}
-          />
-        ))}
+        <RestaurantsTabContainer
+          onClick={(restaurant) => setActiveRestaurant(restaurant)}
+        />
       </div>
-      <RestaurantContainer restaurantId={activeRestaurantId} />
+      {activeRestaurant && <Restaurant restaurant={activeRestaurant} />}
     </div>
   );
 };

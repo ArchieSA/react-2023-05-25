@@ -31,8 +31,8 @@ const reducer = (state, { type, payload } = {}) => {
   }
 };
 
-export const NewReviewForm = ({ users = [], saveReview }) => {
-  const [form, dispatch] = useReducer(reducer, initialState);
+export const NewReviewForm = ({ users = [], review, saveReview }) => {
+  const [form, dispatch] = useReducer(reducer, review || initialState);
 
   return (
     <div>

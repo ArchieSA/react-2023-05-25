@@ -10,19 +10,7 @@ export const userSlice = createSlice({
     loadingStatus: STATUSES.idle,
   }),
   extraReducers: {
-    [fetchUsersIfNotExist.pending]: (state) => {
-      state.loadingStatus = STATUSES.pending;
-    },
-    [fetchUsersIfNotExist.fulfilled]: (state, { payload }) => {
-      state.loadingStatus = STATUSES.finished;
-      userEntityAdapter.setAll(state, payload);
-    },
-    [fetchUsersIfNotExist.rejected]: (state, { payload }) => {
-      state.loadingStatus =
-        payload === STATUSES.alreadyLoaded
-          ? STATUSES.finished
-          : STATUSES.failed;
-    },
+    //
   },
 });
 

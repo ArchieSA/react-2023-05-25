@@ -1,10 +1,14 @@
+"use client";
+
 /* eslint-disable react/jsx-key */
 import { Tab } from "@/components/Tab/Tab";
 import { useGetRestaurantsQuery } from "@/redux/services/api";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 export const RestaurantsTabContainer = ({ onClick }) => {
-  const { data: restaurants, isLoading } = useGetRestaurantsQuery();
+  const pathname = usePathname();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -13,7 +17,9 @@ export const RestaurantsTabContainer = ({ onClick }) => {
   return (
     <div>
       {restaurants.map((restaurant) => (
-        <Tab title={restaurant.name} onClick={() => onClick(restaurant)} />
+        <Link href={`${pathname}/${restaurant.id}`}>
+          <Tab title={restaurant.name} />
+        </Link>
       ))}
     </div>
   );

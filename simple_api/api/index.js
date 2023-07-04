@@ -7,6 +7,15 @@ router.get("/restaurants", (req, res, next) => {
   reply(res, restaurants);
 });
 
+router.get("/restaurant/:restaurantId", (req, res, next) => {
+  const restaurantId = req.params?.restaurantId;
+  let restaurant;
+  if (restaurantId) {
+    restaurant = getById(restaurants)(restaurantId);
+  }
+  reply(res, restaurant);
+});
+
 router.get("/dishes", (req, res, next) => {
   const { restaurantId, productId } = req.query;
   let result = products;

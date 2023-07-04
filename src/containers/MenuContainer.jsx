@@ -1,30 +1,13 @@
 import { Menu } from "@/components/Menu/Menu";
-import { MenuSkeleton } from "@/components/Menu/MenuSkeleton";
-import { STATUSES } from "@/constants/statuses";
-import { useRequest } from "@/hooks/useRequest";
-import { selectIsDishLoading } from "@/redux/features/dish/selectors";
-import { fetchDishByRestaurantIdIfNotExist } from "@/redux/features/dish/thunk/fetchDishByRestaurantIdIfNotExist";
-import { selectRestaurantDishIds } from "@/redux/features/restaurant/selectors";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { fetchDishes } from "@/services";
+import React from "react";
 
-export const MenuContainer = ({ restaurantId, className }) => {
-  const dishIds = useSelector((state) =>
-    selectRestaurantDishIds(state, restaurantId)
-  );
+export async function MenuContainer({ restaurantId, className }) {
+  const dishes = await fetchDishes(restaurantId);
 
-  const dishLoadingStatus = useRequest(
-    fetchDishByRestaurantIdIfNotExist,
-    restaurantId
-  );
-
-  if (dishLoadingStatus === STATUSES.pending) {
-    return <MenuSkeleton />;
-  }
-
-  if (!dishIds?.length) {
+  if (!dishes?.length) {
     return null;
   }
 
-  return <Menu dishIds={dishIds} className={className} />;
-};
+  return <Menu dishes={dishes} className={className} />;
+}

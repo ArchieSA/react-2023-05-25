@@ -6,13 +6,13 @@ import { DishContainer } from "@/containers/DishContainer";
 import { Skeleton } from "@/components/Skeleton/Skeleton";
 
 /* eslint-disable react/jsx-key */
-export const Menu = ({ dishIds, className }) => {
+export const Menu = ({ dishes, className }) => {
   return (
     <div className={classNames(styles.root, className)}>
       <h3>Menu</h3>
       <div className={styles.dishList}>
-        {dishIds.map((dishId) => (
-          <DishContainer dishId={dishId} className={styles.dish} />
+        {dishes.map((dish) => (
+          <DishContainer dish={dish} className={styles.dish} />
         ))}
       </div>
     </div>

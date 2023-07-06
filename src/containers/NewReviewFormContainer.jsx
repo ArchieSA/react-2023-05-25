@@ -1,23 +1,11 @@
+"use client"
+
 import { NewReviewForm } from "@/components/NewReviewForm/NewReviewForm";
-import {
-  useCreateReviewMutation,
-  useGetUsersQuery,
-  useUpdateReviewMutation,
-} from "@/redux/services/api";
 import React from "react";
 
-export const NewReviewFormContainer = ({ review }) => {
-  const [createReview, { isLoading: isSaving }] = useCreateReviewMutation();
-  const [updateReview, { isLoading: isUpdating }] = useUpdateReviewMutation();
-  const { data: users, isLoading } = useGetUsersQuery();
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isSaving || isUpdating) {
-    return <div>Saving...</div>;
-  }
+export const NewReviewFormContainer = ({ review, users }) => {
+  const createReview = () => {};
+  const updateReview = (reviewId, newReview) => {console.log(reviewId);console.log(newReview)};
 
   return (
     <NewReviewForm

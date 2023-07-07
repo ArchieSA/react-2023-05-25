@@ -1,17 +1,22 @@
 .root {
   height: 100%;
   display: grid;
+  grid-template-areas: 'header header header' 'content content content' 'footer footer footer';
   grid-template-rows: auto 1fr auto;
 }
 
 .header {
-  position: sticky;
-  top: 0;
+  grid-area: header;
 }
 
 .content {
-  width: 500px;
-  margin: 10px auto;
+  width: 100%;
+  grid-area: content;
+  margin: 0 auto;
+}
+
+.footer {
+  grid-area: footer;
 }
 
 .link {

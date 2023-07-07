@@ -1,10 +1,15 @@
 export async function fetchRestaurants() {
-  const response = await fetch("http://localhost:3001/api/restaurants/", {
-    next: { tags: ["config"] },
+  const response = await fetch('http://localhost:3001/api/restaurants/', {
+    next: { tags: ['config'] },
   });
   const restaurants = await response.json();
 
   return restaurants;
+}
+
+export async function fetchDishes() {
+  const response = await fetch('http://localhost:3001/api/dishes');
+  return await response.json();
 }
 
 export async function fetchRestaurant(restaurantId) {
@@ -16,7 +21,7 @@ export async function fetchRestaurant(restaurantId) {
   return restaurant;
 }
 
-export async function fetchDishes(restaurantId) {
+export async function fetchDishe(restaurantId) {
   const response = await fetch(
     `http://localhost:3001/api/dishes?restaurantId=${restaurantId}`
   );

@@ -1,0 +1,41 @@
+.root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .wrapper {
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    width: 100%;
+    text-align: center;
+  }
+  .description {
+    font-size: 1rem;
+    width: 100%;
+    text-align: justify;
+  }
+
+  .link {
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid rgb(230, 69, 11);
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+    transition: background-color ease-in 0.3s;
+
+    &:hover {
+      background-color: rgb(230, 69, 11);
+      color: white;
+    }
+  }
+}

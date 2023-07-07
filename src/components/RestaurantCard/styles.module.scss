@@ -1,0 +1,28 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.navLink {
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+
+  &::after {
+    background-color: rgb(230, 69, 11);
+    content: '';
+    display: block;
+    width: 0%;
+    height: 2px;
+    transition: width 0.3s ease-in-out;
+  }
+  &:hover:after,
+  :focus:after {
+    width: 100%;
+  }
+}

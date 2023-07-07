@@ -1,12 +1,12 @@
-import { Header } from "@/components/Header/Header";
-import styles from "./styles.module.scss";
-import { Footer } from "@/components/Footer/Footer";
+import { Footer } from '@/components/Footer/Footer';
+import { Header } from '@/components/Header/Header';
+import styles from './styles.module.scss';
 
 export const Layout = ({ children }) => {
   return (
     <div className={styles.root}>
       <Header className={styles.header} />
-      <div className={styles.content}>{children}</div>
+      <main className={styles.content}>{children}</main>
       <Footer className={styles.footer} />
     </div>
   );

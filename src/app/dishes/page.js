@@ -1,4 +1,6 @@
-import { fetchDishes } from '@/services';
+import { restaurantApi } from '@/services';
+import Link from 'next/link';
+import styles from './styles.module.scss';
 
 export const metadata = {
   title: 'Меню',
@@ -6,15 +8,23 @@ export const metadata = {
 };
 
 export default async function DishesPage() {
-  const dishes = await fetchDishes();
-  console.log(dishes);
+  const dishes = await restaurantApi.fetchDishes();
 
   return (
-    <div>
-      {dishes &&
-        dishes.map(el => {
-          return <span key={el.id}>{el.name}</span>;
-        })}
-    </div>
+    <section className={styles.root}>
+      <h2 className={styles.title}>Список ингредиентов</h2>
+      <ul className={styles.list}>
+        {dishes &&
+          dishes.map(el => {
+            return (
+              <li key={el.id} className={styles.listItem}>
+                <Link className={styles.link} href={`dishes/${el.id}`}>
+                  {el.name}
+                </Link>
+              </li>
+            );
+          })}
+      </ul>
+    </section>
   );
 }

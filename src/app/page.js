@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import styles from './styles.module.scss';
 
+export const metadata = {
+  title: 'Главная страница',
+};
+
 export default function Home() {
   return (
     <section className={styles.root}>
@@ -10,9 +14,14 @@ export default function Home() {
           Наш сервис предоставляет возможность выбрать ресторан по вашим
           предпочтениям:)
         </p>
-        <Link className={styles.link} href='/restaurant'>
-          Список ресторанов
-        </Link>
+        <nav className={styles.nav}>
+          <Link className={styles.link} href='/restaurant'>
+            Список ресторанов
+          </Link>
+          <Link className={styles.link} href='/dishes'>
+            Список ингредиентов
+          </Link>
+        </nav>
       </div>
     </section>
   );

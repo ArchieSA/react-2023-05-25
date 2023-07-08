@@ -1,9 +1,8 @@
-import { Menu } from "@/components/Menu/Menu";
-import { fetchDishes } from "@/services";
-import React from "react";
+import { Menu } from '@/components/Menu/Menu';
+import { restaurantApi } from '@/services';
 
 export async function MenuContainer({ restaurantId, className }) {
-  const dishes = await fetchDishes(restaurantId);
+  const dishes = await restaurantApi.fetchDishesByRestaurantId(restaurantId);
 
   if (!dishes?.length) {
     return null;

@@ -1,21 +1,11 @@
 import { Reviews } from '@/components/Reviews/Reviews';
-import { useGetReviewsQuery, useGetUsersQuery } from '@/redux/services/api';
+import { restaurantApi } from '@/services';
 
-export const ReviewsContainer = ({ restaurantId, className }) => {
-  const { data: reviews, isFetching, error } = useGetReviewsQuery(restaurantId);
-  const {
-    data: users,
-    isLoading: isUsersLoading,
-    error: usersError,
-  } = useGetUsersQuery();
+export const ReviewsContainer = async ({ restaurantId, className }) => {
+  const reviews = await restaurantApi.fetchReviewsByRestaurantId(restaurantId);
 
-  if (isFetching || isUsersLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!reviews?.length || !users?.length || error || usersError) {
+  if (!reviews.length) {
     return null;
   }
-
   return <Reviews reviews={reviews} className={className} />;
 };

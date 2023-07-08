@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-key */
 import { RestaurantCard } from '@/components/RestaurantCard/RestaurantCard';
-import { fetchRestaurants } from '@/services';
+import { restaurantApi } from '@/services';
 import styles from './styles.module.scss';
 
 export const metadata = {
@@ -9,12 +8,12 @@ export const metadata = {
 };
 
 export default async function RestaurantsPage() {
-  const restaurants = await fetchRestaurants();
+  const restaurants = await restaurantApi.fetchRestaurants();
 
   return (
     <div className={styles.root}>
       {restaurants.map(restaurant => (
-        <RestaurantCard restaurant={restaurant} />
+        <RestaurantCard key={restaurant.id} restaurant={restaurant} />
       ))}
     </div>
   );

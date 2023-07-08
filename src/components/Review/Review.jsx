@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-
-import styles from "./styles.module.scss";
-import classNames from "classnames";
-import { UserContainer } from "@/containers/UserContainer";
-import { NewReviewFormContainer } from "@/containers/NewReviewFormContainer";
+'use client';
+import { useState } from 'react';
+import { NewReviewFormContainer } from '@/containers/NewReviewFormContainer';
+import { UserContainer } from '@/containers/UserContainer';
+import classNames from 'classnames';
+import styles from './styles.module.scss';
 
 export const Review = ({ review, className }) => {
   const [isEditMode, setIsEditMode] = useState(false);

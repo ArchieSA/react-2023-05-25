@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-key */
-
 import { Button } from '@/components/Button/Button';
 import { useIsMobile } from '@/contexts/device';
 import classNames from 'classnames';

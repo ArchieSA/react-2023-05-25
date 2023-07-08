@@ -27,7 +27,8 @@ export const Review = ({ review, className, users }) => {
           <p>{text}</p>
         </>
       ) : (
-        <NewReviewFormContainer review={review} users={users}/>
+        <div>plug</div>
+        // <NewReviewFormContainer review={review} users={users}/>
       )}
     </div>
   );

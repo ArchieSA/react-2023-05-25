@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { DishesCard } from "@/components/DishesCard/DishesCard";
 import { fetchDishesAll } from "@/services";
 

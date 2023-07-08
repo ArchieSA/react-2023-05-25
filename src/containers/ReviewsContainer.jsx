@@ -1,9 +1,13 @@
+"use client";
+
 import { Reviews } from "@/components/Reviews/Reviews";
+import { useGetReviewsQuery } from "@/redux/services/api";
 import { fetchReviews } from "@/services";
 import React from "react";
 
-export async function ReviewsContainer ({ restaurantId, className, users }) {
-  const reviews = await fetchReviews(restaurantId);
+export function ReviewsContainer ({ restaurantId = null, className, users }) {
+
+  const {data: reviews} = useGetReviewsQuery(restaurantId);
 
   if (!reviews?.length || !users?.length) {
     return null;

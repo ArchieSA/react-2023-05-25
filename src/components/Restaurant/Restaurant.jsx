@@ -1,17 +1,24 @@
-import React from "react";
-
 import styles from "./styles.module.scss";
-import { MenuContainer } from "@/containers/MenuContainer";
+import Link from "next/link";
+import { RestaurantHeader } from '@/components/RestaurantHeader/RestaurantHeader'
+import { ReviewsContainer } from "@/containers/ReviewsContainer";
+import { NewReviewFormContainer } from "@/containers/NewReviewFormContainer";
 
 export const Restaurant = ({ restaurant }) => {
-  const { name, id } = restaurant;
+  const { id } = restaurant;
 
   return (
-    <div>
-      <h2>{name}</h2>
-      <MenuContainer restaurantId={id} className={styles.menu} />
-      {/* <ReviewsContainer restaurantId={id} className={styles.reviews} />
-      <NewReviewFormContainer restaurantId={id} /> */}
+    <div className={styles.root}>
+      <RestaurantHeader restaurant={restaurant} />
+      <Link
+        className={styles.menu}
+        href={`/restaurant/${id}/dishes`}
+      >
+        Меню
+      </Link>
+
+      <ReviewsContainer restaurantId={id} className={styles.reviews} />
+      <NewReviewFormContainer restaurantId={id} />
     </div>
   );
 };

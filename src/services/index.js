@@ -24,3 +24,27 @@ export async function fetchDishes(restaurantId) {
 
   return restaurant;
 }
+
+export async function fetchDishe(productId) {
+  const response = await fetch(
+    `http://localhost:3001/api/dishes?productId=${productId}`
+  );
+  const product = await response.json();
+
+  return product;
+}
+
+export async function fetchReviews(restaurantId) {
+  const response = await fetch(
+    `http://localhost:3001/api/reviews?restaurantId=${restaurantId}`
+  );
+  const reviews = await response.json();
+
+  return reviews;
+}
+
+export async function fetchUsers() {
+  const response = await fetch("http://localhost:3001/api/users/");
+  const users = await response.json();
+  return users;
+}

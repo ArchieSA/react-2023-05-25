@@ -1,7 +1,5 @@
-/* eslint-disable react/jsx-key */
 import { Rating } from "@/components/Rating/Rating";
-import React, { useReducer, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useReducer } from "react";
 
 const initialState = {
   userId: "",
@@ -35,7 +33,7 @@ export const NewReviewForm = ({ users = [], review, saveReview }) => {
   const [form, dispatch] = useReducer(reducer, review || initialState);
 
   return (
-    <div>
+    <div style={{marginTop: '20px', padding: '15px', border: '1px solid #eee'}}>
       <button
         onClick={() => {
           if (form.userId && form.text && form.rating) {
@@ -56,7 +54,7 @@ export const NewReviewForm = ({ users = [], review, saveReview }) => {
         >
           <option>-</option>
           {users.map(({ name, id }) => (
-            <option value={id}>{name}</option>
+            <option key={id} value={id}>{name}</option>
           ))}
         </select>
       </div>

@@ -14,7 +14,9 @@
 }
 
 .title {
+  display: flex;
   margin-right: auto;
+  flex-direction: column;
 }
 
 .price {
@@ -23,4 +25,10 @@
 
 .sum {
   margin-right: 10px;
+}
+
+.ingredients {
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.8);
 }

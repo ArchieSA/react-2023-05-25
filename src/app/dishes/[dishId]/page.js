@@ -1,4 +1,5 @@
 import { restaurantApi } from '@/services';
+import styles from './styles.module.scss';
 
 export async function generateStaticParams() {
   const dishes = await restaurantApi.fetchDishes();
@@ -16,9 +17,9 @@ export default async function DishPage({ params }) {
   }
   const currentDish = dishes.find(({ id }) => id === params.dishId);
   return (
-    <arcticle>
-      <span>{currentDish.name}</span>
-      <span>{currentDish.price}р</span>
-    </arcticle>
+    <article className={styles.root}>
+      <span>Название: {currentDish.name}</span>
+      <span>Цена: {currentDish.price}р</span>
+    </article>
   );
 }

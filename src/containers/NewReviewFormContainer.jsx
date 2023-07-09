@@ -1,3 +1,5 @@
+'use client'
+
 import { NewReviewForm } from "@/components/NewReviewForm/NewReviewForm";
 import {
   useCreateReviewMutation,

@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable react/jsx-key */
 import { Rating } from "@/components/Rating/Rating";
 import React, { useReducer, useState } from "react";

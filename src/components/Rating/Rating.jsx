@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-key */
 import React from "react";
 
+const ratingArray = [1, 2, 3, 4, 5];
+
 export const Rating = ({ value, onChange }) => {
   return (
     <div>

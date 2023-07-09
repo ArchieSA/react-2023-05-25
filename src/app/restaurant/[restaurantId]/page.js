@@ -9,10 +9,6 @@ export async function generateStaticParams() {
 
 export default async function RestaurantPage({ params }) {
   const restaurant = await fetchRestaurant(params.restaurantId);
-
-  return (
-    <div>
-      <Restaurant restaurant={restaurant} />
-    </div>
-  );
+  return <Restaurant restaurant={restaurant} />
+ 
 }

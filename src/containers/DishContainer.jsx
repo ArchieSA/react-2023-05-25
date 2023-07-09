@@ -3,7 +3,6 @@
 import { Dish } from "@/components/Dish/Dish";
 import { cartActions } from "@/redux/features/cart";
 import { selectDishAmount } from "@/redux/features/cart/selectors";
-import { selectDish } from "@/redux/features/dish/selectors";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 

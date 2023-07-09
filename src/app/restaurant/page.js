@@ -9,7 +9,7 @@ export default async function RestaurantsPage() {
   return (
     <div>
       {restaurants.map((restaurant) => (
-        <RestaurantCard restaurant={restaurant} />
+        <RestaurantCard key={restaurant.id} restaurant={restaurant} />
       ))}
     </div>
   );

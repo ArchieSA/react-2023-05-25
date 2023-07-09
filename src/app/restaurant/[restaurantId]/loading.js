@@ -1,3 +1,5 @@
+import {Loading} from '@/components/Loading/Loading'
+
 export default function RestaurantLoading() {
-  return <div>Loading</div>;
+  return <Loading name='restaurant' />
 }

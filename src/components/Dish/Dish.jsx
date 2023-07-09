@@ -1,21 +1,20 @@
 /* eslint-disable react/jsx-key */
-import React, { useState } from "react";
-
-import styles from "./styles.module.scss";
+import React from "react";
 import { Button } from "@/components/Button/Button";
 import classNames from "classnames";
 import { useIsMobile } from "@/contexts/device";
+import styles from "./styles.module.scss";
 
 export const Dish = ({ dish, amount, increment, decrement, className }) => {
   const isMobile = useIsMobile();
-
   const { name, price } = dish;
+  const showExtraInfo = !isMobile && amount > 0
 
   return (
     <div className={classNames(styles.root, className)}>
       <span className={styles.title}>{name}</span>
       <span className={styles.price}>{price}р</span>
-      {!isMobile && amount > 0 && (
+      {showExtraInfo && (
         <span className={styles.sum}>{amount * price}р</span>
       )}
       <Button
@@ -35,6 +34,12 @@ export const Dish = ({ dish, amount, increment, decrement, className }) => {
       >
         +
       </Button>
+      {showExtraInfo && dish.ingredients && (
+        <div className={styles.break}></div>
+      )}
+      {showExtraInfo && dish.ingredients && (
+        <div className={styles.ingrad}>{dish.ingredients.join(", ")}</div>
+      )}
     </div>
   );
 };

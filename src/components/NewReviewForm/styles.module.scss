@@ -1,0 +1,12 @@
+.row {
+  display: flex;
+  margin: 0.4rem 0;
+}
+.control {
+  flex-grow: 1;
+}
+.container {
+  margin-top: 0.4rem;
+  background-color: lighten(#ccc, 16%);
+  padding: 1rem;
+}

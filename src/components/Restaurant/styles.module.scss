@@ -10,3 +10,26 @@
 .reviews {
   margin-top: 20px;
 }
+
+.back {
+  font-weight: bold;
+  margin-right: 0.7rem;
+  margin-bottom: auto;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+  width: 100%;
+
+  &_inner {
+    display: flex;
+  }
+}
+
+.name {
+  display: inline-block;
+  margin-right: 0.3rem;
+  margin-bottom: auto;
+}

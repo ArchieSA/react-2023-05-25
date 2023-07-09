@@ -1,7 +1,8 @@
-/* eslint-disable react/jsx-key */
+'use client'
+
+import React, { useReducer } from "react";
 import { Rating } from "@/components/Rating/Rating";
-import React, { useReducer, useState } from "react";
-import { useDispatch } from "react-redux";
+import styles from "./styles.module.scss";
 
 const initialState = {
   userId: "",
@@ -9,7 +10,6 @@ const initialState = {
   rating: 5,
 };
 
-// action = {type, payload}
 const reducer = (state, { type, payload } = {}) => {
   switch (type) {
     case "changeUser": {
@@ -31,11 +31,11 @@ const reducer = (state, { type, payload } = {}) => {
   }
 };
 
-export const NewReviewForm = ({ users = [], review, saveReview }) => {
+export const NewReviewForm = ({ users = [], review, saveReview, cancel }) => {
   const [form, dispatch] = useReducer(reducer, review || initialState);
 
   return (
-    <div>
+    <div className={styles.container}>
       <button
         onClick={() => {
           if (form.userId && form.text && form.rating) {
@@ -45,33 +45,43 @@ export const NewReviewForm = ({ users = [], review, saveReview }) => {
         }}
       >
         SaveReview
+      </button>&nbsp;
+      <button
+        onClick={() => {
+          cancel()
+        }}
+      >
+        Cancel
       </button>
-      <div>
-        <label>Name</label>
+      <div className={styles.row}>
+        <label>Name&nbsp;</label>
         <select
+          className={styles.control}
           value={form.userId}
           onChange={(event) => {
             dispatch({ type: "changeUser", payload: event.target.value });
           }}
+          disabled={!!review}
         >
           <option>-</option>
           {users.map(({ name, id }) => (
-            <option value={id}>{name}</option>
+            <option key={id} value={id}>{name}</option>
           ))}
         </select>
       </div>
-      <div>
-        <label>Text</label>
-        <input
+      <div className={styles.row}>
+        <label>Text&nbsp;</label>
+        <input className={styles.control}
           value={form.text}
           onChange={(event) =>
             dispatch({ type: "changeText", payload: event.target.value })
           }
         />
       </div>
-      <div>
-        <label>Rating</label>
+      <div className={styles.row}>
+        <label>Rating&nbsp;</label>
         <Rating
+          className={styles.control}
           value={form.rating}
           onChange={(value) =>
             dispatch({ type: "changeRating", payload: value })

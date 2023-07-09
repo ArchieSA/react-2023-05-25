@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+'use client'
 
-import styles from "./styles.module.scss";
+import React, { useState } from "react";
 import classNames from "classnames";
 import { UserContainer } from "@/containers/UserContainer";
 import { NewReviewFormContainer } from "@/containers/NewReviewFormContainer";
+import styles from "./styles.module.scss";
 
-export const Review = ({ review, className }) => {
+export const Review = ({ review, className, restaurantId }) => {
   const [isEditMode, setIsEditMode] = useState(false);
 
   if (!review) {
@@ -15,7 +16,8 @@ export const Review = ({ review, className }) => {
   const { text, userId, rating } = review;
   return (
     <div className={classNames(styles.root, className)}>
-      <button onClick={() => setIsEditMode(!isEditMode)}>switchMode</button>
+      <button onClick={() => setIsEditMode((mode) => !mode)}>Edit</button>
+      <br />
       {!isEditMode ? (
         <>
           <div className={styles.header}>
@@ -25,7 +27,7 @@ export const Review = ({ review, className }) => {
           <p>{text}</p>
         </>
       ) : (
-        <NewReviewFormContainer review={review} />
+        <NewReviewFormContainer review={review} restaurantId={restaurantId} onSaved={() => setIsEditMode(false)} />
       )}
     </div>
   );

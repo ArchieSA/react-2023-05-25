@@ -1,0 +1,19 @@
+.list {
+  list-style-type: none;
+
+  & > li {
+    margin: 0.3rem 0;
+  }
+
+  & > a {
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+      color: blue;
+    }
+    &:visited {
+      color: lighten(black, 50%);
+    }
+  }
+}

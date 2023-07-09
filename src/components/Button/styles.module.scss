@@ -35,17 +35,27 @@
   border: none;
 }
 
-.inline {
+%inline-base {
   background-color: transparent;
   border: none;
-
-  color: white;
+  padding-left: 0;
+  padding-right: 0;
 
   cursor: pointer;
 
   &:hover {
     opacity: 0.5;
   }
+}
+
+.inline {
+  @extend %inline-base;
+  color: white;  
+}
+
+.inlineDark {
+  @extend %inline-base;
+  color: black;
 }
 
 .default {

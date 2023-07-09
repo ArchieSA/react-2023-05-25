@@ -1,6 +1,18 @@
 import { Restaurant } from "@/components/Restaurant/Restaurant";
 import { fetchRestaurant, fetchRestaurants } from "@/services";
 
+export async function generateMetadata({ params }) {
+  const restaurant = await fetchRestaurant(params.restaurantId);
+
+  return {
+    title: restaurant.name,
+    description: "Good restaurant",
+    openGraph: {
+      images: [],
+    },
+  };
+}
+
 export async function generateStaticParams() {
   const restaurants = await fetchRestaurants();
 

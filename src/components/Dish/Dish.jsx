@@ -1,10 +1,7 @@
-/* eslint-disable react/jsx-key */
-import React, { useState } from "react";
-
-import styles from "./styles.module.scss";
-import { Button } from "@/components/Button/Button";
-import classNames from "classnames";
-import { useIsMobile } from "@/contexts/device";
+import { Button } from '@/components/Button/Button';
+import { useIsMobile } from '@/contexts/device';
+import classNames from 'classnames';
+import styles from './styles.module.scss';
 
 export const Dish = ({ dish, amount, increment, decrement, className }) => {
   const isMobile = useIsMobile();
@@ -20,7 +17,7 @@ export const Dish = ({ dish, amount, increment, decrement, className }) => {
       )}
       <Button
         className={styles.decrementAction}
-        viewVariant="secondary"
+        viewVariant='secondary'
         disabled={amount === 0}
         onClick={decrement}
       >
@@ -29,7 +26,7 @@ export const Dish = ({ dish, amount, increment, decrement, className }) => {
       {amount}
       <Button
         className={styles.incrementAction}
-        viewVariant="secondary"
+        viewVariant='secondary'
         disabled={amount === 5}
         onClick={increment}
       >

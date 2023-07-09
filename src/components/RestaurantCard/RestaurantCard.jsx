@@ -1,12 +1,12 @@
-import Link from "next/link";
-import React from "react";
+import Link from 'next/link';
+import styles from './styles.module.scss';
 
 export const RestaurantCard = ({ restaurant }) => {
   return (
-    <div>
-      <Link href={`/restaurant/${restaurant.id}`}>
-        <div>{restaurant.name}</div>
+    <nav className={styles.nav}>
+      <Link className={styles.navLink} href={`/restaurant/${restaurant.id}`}>
+        <span>{restaurant.name}</span>
       </Link>
-    </div>
+    </nav>
   );
 };

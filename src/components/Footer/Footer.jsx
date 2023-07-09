@@ -1,20 +1,19 @@
-"use client";
+'use client';
 
-import classNames from "classnames";
-import React from "react";
+import classNames from 'classnames';
 
-import styles from "./styles.module.scss";
-import { Button } from "@/components/Button/Button";
-import { useIsMobile, useMobileVersionSwitcher } from "@/contexts/device";
+import { Button } from '@/components/Button/Button';
+import { useIsMobile, useMobileVersionSwitcher } from '@/contexts/device';
+import styles from './styles.module.scss';
 
 export const Footer = ({ className }) => {
   const isMobile = useIsMobile();
   const switchVersion = useMobileVersionSwitcher();
 
   return (
-    <div className={classNames(className, styles.root)}>
-      <Button onClick={switchVersion} viewVariant="inline">
-        {isMobile ? "Десктопная версия" : "Мобильная версия"}
+    <div className={classNames(styles.root, className)}>
+      <Button onClick={switchVersion} viewVariant='inline'>
+        {isMobile ? 'Десктопная версия' : 'Мобильная версия'}
       </Button>
     </div>
   );

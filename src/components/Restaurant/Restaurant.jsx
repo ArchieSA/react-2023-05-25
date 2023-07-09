@@ -1,17 +1,20 @@
-import React from "react";
-
-import styles from "./styles.module.scss";
-import { MenuContainer } from "@/containers/MenuContainer";
+import { MenuContainer } from '@/containers/MenuContainer';
+import { NewReviewFormContainer } from '@/containers/NewReviewFormContainer';
+import { ReviewsContainer } from '@/containers/ReviewsContainer';
+import { HeroWrapper } from '../HeroWrapper/HeroWrapper';
+import styles from './styles.module.scss';
 
 export const Restaurant = ({ restaurant }) => {
-  const { name, id } = restaurant;
+  const { name, id, img } = restaurant;
 
   return (
-    <div>
-      <h2>{name}</h2>
-      <MenuContainer restaurantId={id} className={styles.menu} />
-      {/* <ReviewsContainer restaurantId={id} className={styles.reviews} />
-      <NewReviewFormContainer restaurantId={id} /> */}
+    <div className={styles.root}>
+      <HeroWrapper img={img} restaurantName={name} />
+      <div className={styles.tabs}>
+        <MenuContainer restaurantId={id} className={styles.menu} />
+        <ReviewsContainer restaurantId={id} className={styles.reviews} />
+        <NewReviewFormContainer restaurantId={id} />
+      </div>
     </div>
   );
 };

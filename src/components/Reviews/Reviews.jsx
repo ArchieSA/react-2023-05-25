@@ -4,7 +4,6 @@ import React from "react";
 import styles from "./styles.module.scss";
 import classNames from "classnames";
 
-/* eslint-disable react/jsx-key */
 export const Reviews = ({ reviews, className, users }) => {
   return (
     <div className={classNames(styles.root, className)}>
@@ -12,6 +11,7 @@ export const Reviews = ({ reviews, className, users }) => {
       <div className={styles.reviews}>
         {reviews.map((review) => (
           <Review 
+            key={review.id}
             review={review} 
             className={styles.review} 
             users={users}

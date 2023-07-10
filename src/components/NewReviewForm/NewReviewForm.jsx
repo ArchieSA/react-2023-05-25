@@ -55,7 +55,7 @@ export const NewReviewForm = ({ users = [], review, saveReview }) => {
         >
           <option>-</option>
           {users.map(({ name, id }) => (
-            <option value={id}>{name}</option>
+            <option key={id} value={id}>{name}</option>
           ))}
         </select>
       </div>

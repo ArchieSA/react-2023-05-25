@@ -8,7 +8,7 @@ export default async function DishesPage() {
     return (
       <div>
         {dishes.map((dishes) => (
-            <DishesCard dishes={dishes} />
+            <DishesCard key={dishes.id} dishes={dishes} />
         ))}
       </div>
     );

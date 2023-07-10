@@ -5,29 +5,30 @@ import { useCreateReviewMutation, useUpdateReviewMutation } from "@/redux/servic
 import React from "react";
 
 
-export const NewReviewFormContainer = ({ restaurantId, review, users }) => {
+export const NewReviewFormContainer = ({ restaurantId, review, users, setIsEditMode }) => {
 
   const [createReview, { isLoading: isLoadingCreate }] = useCreateReviewMutation();
-  const [updateReview, { isLoading: isLoadingUpdate }] = useUpdateReviewMutation();
-
-  if (isLoadingCreate || isLoadingUpdate) {
-    return <div>Saving...</div>;
-  }
+  const [updateReview, { isLoading: isLoadingUpdate, isSuccess }] = useUpdateReviewMutation();
 
   return (
     <NewReviewForm
       users={users}
       review={review}
-      saveReview={(newReview) =>
-        review
-          ? updateReview({
-              reviewId: review.id,
-              newReview,
-            })
-          : createReview({
-              restaurantId,
-              newReview,
-            })
+      saveReview={(newReview) => {
+        if (review) {
+          updateReview({
+            reviewId: review.id,
+            newReview,
+          });
+          setIsEditMode(false);
+        }
+        else {
+          createReview({
+            restaurantId,
+            newReview,
+          })
+        }
+      }
       }
     />
   );

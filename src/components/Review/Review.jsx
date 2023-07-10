@@ -25,7 +25,11 @@ export const Review = ({ review, className, users }) => {
           <p>{text}</p>
         </>
       ) : (
-        <NewReviewFormContainer review={review} users={users}/>
+        <NewReviewFormContainer
+          review={review}
+          users={users}
+         setIsEditMode={(param) => setIsEditMode(param)} 
+        />
       )}
     </div>
   );

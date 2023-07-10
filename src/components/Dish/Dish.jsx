@@ -1,6 +1,5 @@
 "use client"
 
-/* eslint-disable react/jsx-key */
 import React from "react";
 
 import styles from "./styles.module.scss";
@@ -45,7 +44,7 @@ export const Dish = ({ dish, amount, increment, decrement, className }) => {
         <div className={styles.ingredients}>
           <h4>Ingredients:</h4>
           <div className={styles.body}>
-            {ingredients.map((ingredients) => (<div>{ingredients}</div>))}
+            {ingredients.map((ingredients, index) => (<div key={index}>{ingredients}</div>))}
           </div>
         </div>
       }

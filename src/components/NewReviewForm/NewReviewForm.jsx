@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { Rating } from "@/components/Rating/Rating";
 import React, { useReducer, useState } from "react";
-import { useDispatch } from "react-redux";
 
 const initialState = {
   userId: "",
@@ -56,7 +55,7 @@ export const NewReviewForm = ({ users = [], review, saveReview }) => {
         >
           <option>-</option>
           {users.map(({ name, id }) => (
-            <option value={id}>{name}</option>
+            <option key={id} value={id}>{name}</option>
           ))}
         </select>
       </div>

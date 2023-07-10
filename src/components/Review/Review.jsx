@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 import styles from "./styles.module.scss";
 import classNames from "classnames";
-import { UserContainer } from "@/containers/UserContainer";
 import { NewReviewFormContainer } from "@/containers/NewReviewFormContainer";
+import { User } from "@/components/User/User";
 
-export const Review = ({ review, className }) => {
+export const Review = ({ review, className, users }) => {
   const [isEditMode, setIsEditMode] = useState(false);
 
   if (!review) {
@@ -19,13 +19,17 @@ export const Review = ({ review, className }) => {
       {!isEditMode ? (
         <>
           <div className={styles.header}>
-            <UserContainer userId={userId} />
+            <User user={users?.find(({ id }) => id === userId)} />
             <div>{rating}</div>
           </div>
           <p>{text}</p>
         </>
       ) : (
-        <NewReviewFormContainer review={review} />
+        <NewReviewFormContainer
+          review={review}
+          users={users}
+         setIsEditMode={(param) => setIsEditMode(param)} 
+        />
       )}
     </div>
   );

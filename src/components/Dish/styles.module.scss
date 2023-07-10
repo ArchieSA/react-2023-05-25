@@ -1,8 +1,10 @@
 .root {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   padding: 10px 20px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  gap: 10px;
 }
 
 .decrementAction {
@@ -13,12 +15,31 @@
   margin-left: 5px;
 }
 
-.title {
-  margin-right: auto;
+.head {
+  display: flex;
+  align-items: center;
+  .title {
+    margin-right: auto;
+  };
+  .price {
+    margin-right: 10px;
+  };
 }
+
+
 
 .price {
   margin-right: 10px;
+}
+
+.ingredients {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  .body {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .sum {

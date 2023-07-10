@@ -1,29 +1,17 @@
+"use client";
+
 import { Reviews } from "@/components/Reviews/Reviews";
-import { STATUSES } from "@/constants/statuses";
-import { useRequest } from "@/hooks/useRequest";
-import { selectRestaurantReviewIds } from "@/redux/features/restaurant/selectors";
-import { selectIsReviewLoading } from "@/redux/features/review/selectors";
-import { fetchReviewsByRestaurantIdIfNotExist } from "@/redux/features/review/thunks/fetchReviewsByRestaurantIdIfNotExist";
-import { fetchUsersIfNotExist } from "@/redux/features/user/thunks/fetchUsersIfNotExisted";
-import { useGetReviewsQuery, useGetUsersQuery } from "@/redux/services/api";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useGetReviewsQuery } from "@/redux/services/api";
+import { fetchReviews } from "@/services";
+import React from "react";
 
-export const ReviewsContainer = ({ restaurantId, className }) => {
-  const { data: reviews, isFetching, error } = useGetReviewsQuery(restaurantId);
-  const {
-    data: users,
-    isLoading: isUsersLoading,
-    error: usersError,
-  } = useGetUsersQuery();
+export function ReviewsContainer({ restaurantId = null, className, users }) {
 
-  if (isFetching || isUsersLoading) {
-    return <div>Loading...</div>;
-  }
+  const { data: reviews } = useGetReviewsQuery(restaurantId);
 
-  if (!reviews?.length || !users?.length || error || usersError) {
+  if (!reviews?.length || !users?.length) {
     return null;
   }
 
-  return <Reviews reviews={reviews} className={className} />;
+  return <Reviews reviews={reviews} className={className} users={users} />;
 };

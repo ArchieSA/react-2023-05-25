@@ -1,38 +1,34 @@
+"use client"
+
 import { NewReviewForm } from "@/components/NewReviewForm/NewReviewForm";
-import {
-  useCreateReviewMutation,
-  useGetUsersQuery,
-  useUpdateReviewMutation,
-} from "@/redux/services/api";
+import { useCreateReviewMutation, useUpdateReviewMutation } from "@/redux/services/api";
 import React from "react";
 
-export const NewReviewFormContainer = ({ review }) => {
-  const [createReview, { isLoading: isSaving }] = useCreateReviewMutation();
-  const [updateReview, { isLoading: isUpdating }] = useUpdateReviewMutation();
-  const { data: users, isLoading } = useGetUsersQuery();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+export const NewReviewFormContainer = ({ restaurantId, review, users, setIsEditMode }) => {
 
-  if (isSaving || isUpdating) {
-    return <div>Saving...</div>;
-  }
+  const [createReview, { isLoading: isLoadingCreate }] = useCreateReviewMutation();
+  const [updateReview, { isLoading: isLoadingUpdate, isSuccess }] = useUpdateReviewMutation();
 
   return (
     <NewReviewForm
       users={users}
       review={review}
-      saveReview={(newReview) =>
-        review
-          ? updateReview({
-              reviewId: review.id,
-              newReview,
-            })
-          : createReview({
-              restaurantId,
-              newReview,
-            })
+      saveReview={(newReview) => {
+        if (review) {
+          updateReview({
+            reviewId: review.id,
+            newReview,
+          });
+          setIsEditMode(false);
+        }
+        else {
+          createReview({
+            restaurantId,
+            newReview,
+          })
+        }
+      }
       }
     />
   );

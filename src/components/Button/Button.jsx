@@ -1,6 +1,11 @@
 "use client";
 
-import React, { useContext } from "react";
+import React, {
+  forwardRef,
+  useContext,
+  useImperativeHandle,
+  useRef,
+} from "react";
 
 import styles from "./styles.module.scss";
 import classNames from "classnames";
@@ -17,17 +22,24 @@ const ThemeStyle = {
   alternative: styles.alternative,
 };
 
-export const Button = ({
-  children,
-  onClick,
-  disabled,
-  className,
-  viewVariant = "primary",
-}) => {
+export const Button = forwardRef(function Button(
+  { children, onClick, disabled, className, viewVariant = "primary" },
+  ref
+) {
+  const buttonRef = useRef(null);
   const theme = useTheme();
+
+  useImperativeHandle(ref, () => {
+    return {
+      focus() {
+        buttonRef.current.focus();
+      },
+    };
+  });
 
   return (
     <button
+      ref={buttonRef}
       onClick={onClick}
       disabled={disabled}
       className={classNames(
@@ -43,4 +55,4 @@ export const Button = ({
       {children}
     </button>
   );
-};
+});

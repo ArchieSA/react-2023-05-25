@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { Suspense, lazy, useState } from "react";
 
 const FirstSlowComponent = dynamic(
   () =>
@@ -11,12 +11,9 @@ const FirstSlowComponent = dynamic(
   { ssr: false, loading: () => <span>Loading...</span> }
 );
 
-const SecondSlowComponent = dynamic(
+const SecondSlowComponent = lazy(
   () =>
-    import("@/components/examples/second-component").then(
-      (mod) => mod.SecondComponent
-    ),
-  { ssr: false, loading: () => <span>Loading...</span> }
+    import("@/components/examples/second-component")
 );
 
 export default function Lazy() {
@@ -29,7 +26,9 @@ export default function Lazy() {
           <div>Hello</div>
         </FirstSlowComponent>
       )}
-      {count > 1 && <SecondSlowComponent />}
+      <Suspense fallback={<div>Loading...</div>}>
+        {count > 0 && <SecondSlowComponent/>}
+      </Suspense>
     </div>
   );
 }

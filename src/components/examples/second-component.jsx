@@ -1,5 +1,7 @@
 import React from "react";
 
-export const SecondComponent = () => {
+const SecondComponent = () => {
   return <div>second-component</div>;
 };
+
+export default SecondComponent;
